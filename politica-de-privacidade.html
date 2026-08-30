@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Básico -->
+    <title>Política de Privacidade | Guincho e Baterias 24 Horas em Colatina</title>
+    <meta name="description" content="Leia nossa Política de Privacidade. Saiba como coletamos e protegemos seus dados de navegação.">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="./assets/images/logo.png" type="image/png">
+    
+    <!-- Open Graph Básico (Sem Domínio) -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Política de Privacidade | Guincho e Baterias 24 Horas em Colatina">
+    <meta property="og:description" content="Leia nossa Política de Privacidade.">
+    <meta property="og:locale" content="pt_BR">
+    
+    <!-- Google Consent Mode v2 (Deve vir antes do GTM) -->
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        
+        // Define o consentimento padrão (negado) antes de disparar as tags
+        gtag('consent', 'default', {
+            'analytics_storage': 'denied',
+            'ad_storage': 'denied',
+            'ad_user_data': 'denied',
+            'ad_personalization': 'denied'
+        });
+
+        // Verifica se o usuário já salvou uma preferência no localStorage
+        if(localStorage.getItem('cookie_consent') === 'granted') {
+            gtag('consent', 'update', {
+                'analytics_storage': 'granted',
+                'ad_storage': 'granted',
+                'ad_user_data': 'granted',
+                'ad_personalization': 'granted'
+            });
+        }
+    </script>
+    
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PB969BJJ');</script>
+    <!-- End Google Tag Manager -->
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-yellow': '#D32F2F',
+                        'brand-yellow-hover': '#b71c1c',
+                        'brand-dark': '#0f172a',
+                        'brand-darker': '#111111',
+                        'brand-gray': '#f8fafc',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-sans text-slate-800 bg-brand-gray flex flex-col min-h-screen">
+    
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB969BJJ"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <!-- Navbar -->
+    <nav class="w-full bg-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50 border-b border-gray-100">
+        <div class="flex items-center gap-3">
+            <a href="index.html">
+                <img src="./assets/images/logo-hero.png" alt="027 Assistência 24HS" class="h-14 w-auto">
+            </a>
+        </div>
+        
+        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
+            <a href="index.html#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
+            <a href="index.html#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
+            <a href="index.html#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
+        </div>
+
+        <a href="tel:+5527999825891" class="hidden md:flex items-center gap-3 hover:text-brand-yellow transition-colors">
+            <i class="fa-solid fa-phone text-brand-yellow text-xl"></i>
+            <div>
+                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
+                <p class="font-bold text-brand-darker">(27) 99982-5891</p>
+            </div>
+        </a>
+        
+        <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-darker cursor-pointer">
+            <i class="fa-solid fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-6 hidden">
+        <button id="mobile-menu-close" class="absolute top-6 right-6 text-3xl text-brand-darker">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+        <div class="flex flex-col gap-6 text-xl font-bold mt-10">
+            <a href="index.html#servicos" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Serviços</a>
+            <a href="index.html#como-funciona" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Como funciona</a>
+            <a href="index.html#area" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Área de atendimento</a>
+        </div>
+        <a href="tel:+5527999825891" class="mt-8 flex items-center gap-4 bg-brand-gray p-4 rounded-xl">
+            <i class="fa-solid fa-phone text-brand-yellow text-2xl"></i>
+            <div>
+                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
+                <p class="font-bold text-brand-darker text-lg">(27) 99982-5891</p>
+            </div>
+        </a>
+    </div>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        function openMenu() {
+            mobileMenu.classList.remove('hidden');
+            setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.add('translate-x-full');
+            setTimeout(() => mobileMenu.classList.add('hidden'), 300);
+            document.body.style.overflow = '';
+        }
+
+        mobileMenuBtn.addEventListener('click', openMenu);
+        mobileMenuClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+    </script>
+
+
+    <!-- Main Content -->
+    <main class="flex-grow py-16 px-6 md:px-12 lg:px-24">
+        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-8 md:p-12 border border-gray-100">
+            <h1 class="text-3xl md:text-4xl font-bold text-brand-darker mb-8">Política de Privacidade</h1>
+            
+            <div class="prose prose-slate max-w-none space-y-6 text-gray-600">
+                <p>
+                    A sua privacidade é importante para nós. Esta Política de Privacidade explica como a <strong>[NOME DA EMPRESA]</strong>, doravante referida apenas como "nós", coleta, usa e protege as suas informações quando você acessa o nosso site e utiliza os nossos serviços.
+                </p>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">1. Coleta de Informações de Navegação e Uso de Cookies</h2>
+                <p>
+                    Ao navegar em nosso site, podemos coletar automaticamente informações não pessoais sobre o seu dispositivo e sobre a sua interação com o nosso conteúdo. Essa coleta é realizada através de cookies e tecnologias de rastreamento semelhantes gerenciadas pelo <strong>Google Tag Manager</strong>.
+                </p>
+                <p>
+                    As informações coletadas podem incluir o seu endereço de IP, tipo de navegador, páginas visitadas, tempo gasto no site e cliques. Estas informações são utilizadas para fins analíticos e de publicidade (como Google Analytics e Google Ads), permitindo-nos mensurar acessos, entender o comportamento dos usuários, melhorar nossos serviços e exibir campanhas de anúncios mais relevantes.
+                </p>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">2. Gerenciamento e Consentimento de Cookies</h2>
+                <p>
+                    Nós respeitamos as suas escolhas. No momento do seu primeiro acesso, apresentamos um Banner de Cookies para que você possa escolher aceitar ou recusar a utilização de cookies para finalidades de análise e publicidade. 
+                </p>
+                <p>
+                    O seu consentimento (ou recusa) é armazenado localmente em seu navegador de forma a evitar que o banner reapareça continuamente. Você pode alterar essa escolha a qualquer momento clicando no link "Configurações de cookies", localizado no rodapé de nosso site.
+                </p>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">3. Direcionamento para Plataformas Externas</h2>
+                <p>
+                    Para solicitar nossos serviços, o nosso site fornece botões e links que o direcionam para o aplicativo <strong>WhatsApp</strong>. É importante salientar que o WhatsApp é uma plataforma externa e possui a sua própria Política de Privacidade e Termos de Uso. Nós não nos responsabilizamos pela forma como o WhatsApp processa ou armazena os seus dados.
+                </p>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">4. Compartilhamento de Informações</h2>
+                <p>
+                    As informações de navegação coletadas através dos nossos cookies analíticos e de publicidade são compartilhadas com provedores de tecnologia (ex: Google) exclusivamente para fornecer as métricas e ferramentas de marketing mencionadas anteriormente. Nós não vendemos, alugamos ou comercializamos as suas informações pessoais com terceiros para outros fins.
+                </p>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">5. Seus Direitos</h2>
+                <p>
+                    De acordo com a legislação de proteção de dados, você tem o direito de:
+                </p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li>Saber quais dados estão sendo coletados e por quê.</li>
+                    <li>Revogar ou conceder o seu consentimento para a utilização de cookies a qualquer momento.</li>
+                </ul>
+
+                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">6. Contato</h2>
+                <p>
+                    Se você tiver alguma dúvida sobre esta Política de Privacidade ou sobre as nossas práticas relacionadas a dados, entre em contato conosco pelos seguintes meios:
+                </p>
+                <ul class="list-disc pl-6 space-y-2">
+                    <li><strong>Telefone/WhatsApp:</strong> (27) 99982-5891</li>
+                    <li><strong>E-mail:</strong> [SEU EMAIL AQUI]</li>
+                    <li><strong>CNPJ:</strong> [SEU CNPJ AQUI]</li>
+                    <li><strong>Endereço Sede:</strong> [SEU ENDEREÇO AQUI], Colatina - ES</li>
+                </ul>
+
+                <p class="mt-8 text-sm italic">Última atualização: Agosto de 2024</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-brand-darker text-white pt-16 pb-8 px-6 md:px-12 lg:px-24 mt-auto">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10 border-b border-white/10 pb-12 mb-8">
+            <div class="flex items-center gap-3">
+                <a href="index.html">
+                    <img src="./assets/images/logo-transparente.png" alt="027 Assistência 24HS" class="h-24 w-auto">
+                </a>
+            </div>
+
+            <div class="text-sm text-gray-400 max-w-xs">
+                Guincho e baterias automotivas. 24 horas em Colatina e região.
+            </div>
+
+            <div class="flex flex-col gap-3 text-sm font-medium">
+                <a href="index.html#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
+                <a href="index.html#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
+                <a href="index.html#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
+            </div>
+            
+            <div class="flex flex-col gap-3 text-sm font-medium">
+                <a href="politica-de-privacidade.html" class="hover:text-brand-yellow transition-colors">Política de Privacidade</a>
+                <button type="button" onclick="showCookieBanner()" class="text-left hover:text-brand-yellow transition-colors">Configurações de cookies</button>
+            </div>
+            
+            <div class="text-xs text-gray-600">
+                &copy; 2024 Assistência Automotiva 24h.
+            </div>
+        </div>
+    </footer>
+
+    <!-- Cookie Banner -->
+    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-2xl z-[100] transform translate-y-full transition-transform duration-300 flex flex-col md:flex-row items-center justify-between p-4 md:px-12 lg:px-24 gap-4 hidden">
+        <div class="text-sm text-gray-700">
+            Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa <a href="politica-de-privacidade.html" class="text-brand-yellow font-bold hover:underline">Política de Privacidade</a> para entender como você interage com nosso site e melhorar sua experiência (análises e publicidade).
+        </div>
+        <div class="flex gap-3 w-full md:w-auto flex-shrink-0">
+            <button id="btn-reject-cookies" class="flex-1 md:flex-none px-6 py-2 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 transition-colors">Recusar</button>
+            <button id="btn-accept-cookies" class="flex-1 md:flex-none px-6 py-2 bg-brand-yellow text-white font-bold rounded-lg hover:bg-brand-yellow-hover transition-colors">Aceitar</button>
+        </div>
+    </div>
+
+    <script>
+        function hideCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.add('translate-y-full');
+            setTimeout(() => banner.classList.add('hidden'), 300);
+        }
+
+        function showCookieBanner() {
+            const banner = document.getElementById('cookie-banner');
+            banner.classList.remove('hidden');
+            // Timeout to allow display:block to apply before animating
+            setTimeout(() => banner.classList.remove('translate-y-full'), 10);
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const consent = localStorage.getItem('cookie_consent');
+            if (!consent) {
+                showCookieBanner();
+            }
+
+            document.getElementById('btn-accept-cookies').addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'granted');
+                gtag('consent', 'update', {
+                    'analytics_storage': 'granted',
+                    'ad_storage': 'granted',
+                    'ad_user_data': 'granted',
+                    'ad_personalization': 'granted'
+                });
+                hideCookieBanner();
+            });
+
+            document.getElementById('btn-reject-cookies').addEventListener('click', () => {
+                localStorage.setItem('cookie_consent', 'denied');
+                hideCookieBanner();
+            });
+        });
+    </script>
+</body>
+</html>
