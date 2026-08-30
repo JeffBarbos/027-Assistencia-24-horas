@@ -1,6 +1,4 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<!DOCTYPE html><html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -10,28 +8,30 @@
     <meta name="robots" content="index, follow">
     
     <!-- Favicon -->
-    <link rel="icon" href="./assets/images/logo.png" type="image/png">
+    <link rel="icon" href="./assets/images/logo-hero.webp" type="image/webp">
     
-    <!-- Open Graph Básico (Sem Domínio) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Guincho e Baterias 24 Horas em Colatina">
     <meta property="og:description" content="Atendimento rápido para guincho, pane e troca de bateria em Colatina.">
     <meta property="og:locale" content="pt_BR">
+    <link rel="preload" as="image" href="./assets/images/hero-bg.webp?v=2">
     
+    <!-- Preconnect para recursos externos críticos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="">
+
     <!-- Google Consent Mode v2 (Deve vir antes do GTM) -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        
-        // Define o consentimento padrão (negado) antes de disparar as tags
         gtag('consent', 'default', {
             'analytics_storage': 'denied',
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'
         });
-
-        // Verifica se o usuário já salvou uma preferência no localStorage
         if(localStorage.getItem('cookie_consent') === 'granted') {
             gtag('consent', 'update', {
                 'analytics_storage': 'granted',
@@ -50,34 +50,840 @@
     })(window,document,'script','dataLayer','GTM-PB969BJJ');</script>
     <!-- End Google Tag Manager -->
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-yellow': '#D32F2F',
-                        'brand-yellow-hover': '#b71c1c',
-                        'brand-dark': '#0f172a', /* slate-900 */
-                        'brand-darker': '#111111', /* quase preto, igual à logo */
-                        'brand-gray': '#f8fafc',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
+    <!-- Google Fonts: apenas pesos usados, display swap -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Font Awesome: apenas ícones usados via kit CDN com display swap -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <!-- CSS customizado (substitui Tailwind CDN) -->
+    <style>
+        /* ========================
+           DESIGN TOKENS
+        ======================== */
+        :root {
+            --brand-red: #D32F2F;
+            --brand-red-hover: #b71c1c;
+            --brand-dark: #0f172a;
+            --brand-darker: #111111;
+            --brand-gray: #f8fafc;
+            --white: #ffffff;
+            --font-sans: 'Inter', sans-serif;
+        }
+
+        /* ========================
+           RESET & BASE
+        ======================== */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: var(--font-sans);
+            color: #1e293b;
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+        img { display: block; max-width: 100%; height: auto; }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; font-family: inherit; border: none; background: none; }
+
+        /* ========================
+           FOCO E ACESSIBILIDADE
+        ======================== */
+        :focus-visible {
+            outline: 3px solid var(--brand-red);
+            outline-offset: 2px;
+            border-radius: 4px;
+        }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
             }
         }
-    </script>
-    <style>
-        .hero-bg {
-            background-image: linear-gradient(to right, rgba(2, 6, 23, 0.9) 0%, rgba(2, 6, 23, 0.7) 100%), url('./assets/images/hero-bg.png');
+
+        /* ========================
+           UTILITÁRIOS DE LAYOUT
+        ======================== */
+        .container { width: 100%; max-width: 1280px; margin: 0 auto; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .items-start { align-items: flex-start; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .flex-grow { flex-grow: 1; }
+        .flex-shrink-0 { flex-shrink: 0; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .fixed { position: fixed; }
+        .sticky { position: sticky; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .overflow-hidden { overflow: hidden; }
+        .pointer-events-none { pointer-events: none; }
+        .hidden { display: none !important; }
+        .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; border: 0; }
+        .select-none { user-select: none; }
+        .z-10 { z-index: 10; }
+        .z-20 { z-index: 20; }
+        .z-50 { z-index: 50; }
+        .z-100 { z-index: 100; }
+
+        /* ========================
+           NAVBAR
+        ======================== */
+        .navbar {
+            width: 100%;
+            background: var(--white);
+            padding: 1rem 1.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .navbar-logo img { height: 3.5rem; width: auto; }
+        .navbar-links {
+            display: none;
+            align-items: center;
+            gap: 2rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .navbar-links a:hover { color: var(--brand-red); transition: color .2s; }
+        .navbar-phone {
+            display: none;
+            align-items: center;
+            gap: 0.75rem;
+            transition: color .2s;
+        }
+        .navbar-phone:hover { color: var(--brand-red); }
+        .navbar-phone .phone-label { font-size: 0.625rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .navbar-phone .phone-number { font-weight: 700; color: var(--brand-darker); font-size: 1rem; }
+        .navbar-phone i { color: var(--brand-red); font-size: 1.25rem; }
+        .mobile-menu-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: var(--brand-darker);
+            padding: 0.5rem;
+            min-width: 44px;
+            min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .navbar { padding: 1rem 3rem; }
+            .navbar-links { display: flex; }
+            .navbar-phone { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        @media (min-width: 1024px) {
+            .navbar { padding: 1rem 6rem; }
+        }
+
+        /* ========================
+           MOBILE MENU
+        ======================== */
+        .mobile-menu {
+            position: fixed;
+            inset: 0;
+            background: var(--white);
+            z-index: 100;
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            padding: 5rem 1.5rem 2rem;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-menu-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            font-size: 1.875rem;
+            color: var(--brand-darker);
+            min-width: 44px;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .mobile-menu-nav {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-top: 2.5rem;
+        }
+        .mobile-menu-nav a {
+            padding: 1rem 0;
+            border-bottom: 1px solid #f1f5f9;
+            transition: color .2s;
+        }
+        .mobile-menu-nav a:hover { color: var(--brand-red); }
+        .mobile-menu-phone {
+            margin-top: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background: var(--brand-gray);
+            padding: 1rem;
+            border-radius: 0.75rem;
+        }
+        .mobile-menu-phone i { color: var(--brand-red); font-size: 1.5rem; }
+        .mobile-menu-phone .phone-label { font-size: 0.75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .mobile-menu-phone .phone-number { font-weight: 700; color: var(--brand-darker); font-size: 1.125rem; }
+
+        /* ========================
+           HERO SECTION
+        ======================== */
+        .hero {
+            background-color: #020617;
+            background-image: linear-gradient(to right, rgba(2,6,23,0.92) 0%, rgba(2,6,23,0.72) 100%),
+                              image-set(
+                                url('./assets/images/hero-bg.webp?v=2') type('image/webp'),
+                                url('./assets/images/hero-bg.webp?v=2') type('image/png')
+                              );
             background-size: cover;
             background-position: center;
+            color: var(--white);
+            padding: 6rem 1.5rem 8rem;
+            position: relative;
+            overflow: hidden;
         }
+        .hero-inner { max-width: 48rem; }
+        .hero-logo {
+            display: none;
+            position: absolute;
+            top: 2.5rem;
+            right: 2.5rem;
+            z-index: 20;
+        }
+        .hero-logo img { height: 9rem; width: auto; filter: drop-shadow(0 20px 40px rgba(0,0,0,.5)); }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: rgba(255,255,255,.1);
+            border: 1px solid rgba(255,255,255,.2);
+            border-radius: 9999px;
+            padding: 0.375rem 1rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1.5rem;
+        }
+        .hero-badge-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #22c55e; }
+        .hero h1 {
+            font-size: clamp(2.5rem, 7vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            letter-spacing: -0.02em;
+        }
+        .hero h1 span { color: var(--brand-red); }
+        .hero-description {
+            font-size: 1.125rem;
+            color: #d1d5db;
+            margin-bottom: 2.5rem;
+            max-width: 42rem;
+        }
+        .hero-ctas {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: var(--brand-red);
+            color: #111;
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            transition: background .2s;
+            min-height: 48px;
+            font-size: 1rem;
+        }
+        .btn-primary:hover { background: var(--brand-red-hover); color: #111; }
+        .btn-secondary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(255,255,255,.1);
+            color: var(--white);
+            font-weight: 700;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            border: 1px solid rgba(255,255,255,.2);
+            transition: background .2s;
+            min-height: 48px;
+            font-size: 1rem;
+        }
+        .btn-secondary:hover { background: rgba(255,255,255,.2); }
+        .hero-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #d1d5db;
+        }
+        .hero-features div { display: flex; align-items: center; gap: 0.5rem; }
+        .hero-features i { color: var(--brand-red); }
+        @media (min-width: 640px) {
+            .hero-ctas { flex-direction: row; }
+        }
+        @media (min-width: 768px) {
+            .hero { padding: 6rem 3rem 8rem; }
+            .hero-logo { display: block; }
+            .hero-logo img { height: 12rem; }
+        }
+        @media (min-width: 1024px) {
+            .hero { padding: 6rem 6rem 8rem; }
+            .hero-logo img { height: 14rem; }
+        }
+
+        /* ========================
+           FEATURES BAR
+        ======================== */
+        .features-bar {
+            background: var(--brand-red);
+            color: var(--brand-darker);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            border-top: 1px solid rgba(0,0,0,.1);
+            border-bottom: 1px solid rgba(0,0,0,.1);
+        }
+        .features-bar-item {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.5rem;
+            border-right: 1px solid rgba(0,0,0,.1);
+        }
+        .features-bar-item:nth-child(2n) { border-right: none; }
+        .features-bar-item strong { font-size: 1.25rem; font-weight: 700; }
+        .features-bar-item span { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; line-height: 1.3; }
+        @media (min-width: 768px) {
+            .features-bar { grid-template-columns: repeat(4, 1fr); }
+            .features-bar-item {
+                padding: 2rem;
+                flex-direction: row;
+                align-items: center;
+                gap: 1rem;
+                border-right: 1px solid rgba(0,0,0,.1);
+            }
+            .features-bar-item:last-child { border-right: none; }
+            .features-bar-item:nth-child(2n) { border-right: 1px solid rgba(0,0,0,.1); }
+            .features-bar-item:last-child { border-right: none; }
+            .features-bar-item strong { font-size: 1.5rem; }
+        }
+
+        /* ========================
+           SERVICES SECTION
+        ======================== */
+        .section { padding: 6rem 1.5rem; }
+        .section-bg-gray { background: var(--brand-gray); }
+        .section-bg-dark { background: var(--brand-dark); color: var(--white); }
+        .section-bg-white { background: var(--white); }
+        @media (min-width: 768px) { .section { padding: 6rem 3rem; } }
+        @media (min-width: 1024px) { .section { padding: 6rem 6rem; } }
+
+        .section-header {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+        .section-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--brand-red);
+            margin-bottom: 1rem;
+        }
+        .section-title {
+            font-size: clamp(2rem, 5vw, 3rem);
+            font-weight: 700;
+            color: var(--brand-darker);
+            letter-spacing: -0.02em;
+            line-height: 1.15;
+        }
+        .section-title .muted { color: #9ca3af; }
+        .section-subtitle { color: #4b5563; max-width: 28rem; }
+        @media (min-width: 768px) {
+            .section-header {
+                flex-direction: row;
+                align-items: flex-end;
+                justify-content: space-between;
+            }
+        }
+
+        /* Cards de serviço */
+        .services-grid { display: grid; gap: 2rem; }
+        @media (min-width: 768px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+
+        .service-card {
+            background: var(--white);
+            border-radius: 1rem;
+            border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .service-card-dark {
+            background: var(--brand-dark);
+            color: var(--white);
+            border-radius: 1rem;
+            border-top: 4px solid var(--brand-red);
+            box-shadow: 0 4px 24px rgba(0,0,0,.2);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* Carrossel */
+        .carousel-wrap {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: var(--brand-dark);
+            aspect-ratio: 4/3;
+            max-height: 420px;
+        }
+        .carousel-track {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease-in-out;
+            will-change: transform;
+        }
+        .carousel-track img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0,0,0,.5);
+            color: var(--white);
+            width: 2.25rem;
+            height: 2.25rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background .2s;
+            z-index: 10;
+            min-width: 36px;
+            min-height: 36px;
+        }
+        .carousel-btn:hover { background: rgba(0,0,0,.8); }
+        .carousel-btn-prev { left: 0.75rem; }
+        .carousel-btn-next { right: 0.75rem; }
+        .carousel-dots {
+            position: absolute;
+            bottom: 0.75rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+        .carousel-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            border-radius: 50%;
+            background: var(--white);
+            opacity: 0.4;
+            transition: opacity .2s;
+            cursor: pointer;
+        }
+        .carousel-dot.active { opacity: 1; }
+
+        /* Conteúdo dos cards */
+        .service-card-body { padding: 2.5rem; display: flex; flex-direction: column; flex-grow: 1; }
+        .service-icon-row { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 1.5rem; }
+        .service-icon {
+            width: 4rem; height: 4rem;
+            background: #fff0f0;
+            color: var(--brand-red);
+            border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.875rem;
+        }
+        .service-icon-dark { background: rgba(255,255,255,.1); color: var(--brand-red); }
+        .service-number { font-size: 3.75rem; font-weight: 700; color: #f1f5f9; line-height: 1; }
+        .service-number-dark { color: rgba(255,255,255,.05); }
+        .service-type { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #6b7280; margin-bottom: 0.5rem; }
+        .service-type-accent { color: var(--brand-red); }
+        .service-card-title { font-size: 1.875rem; font-weight: 700; color: var(--brand-darker); margin-bottom: 1.5rem; }
+        .service-card-title-light { color: var(--white); }
+        .service-card-desc { color: #4b5563; margin-bottom: 2rem; }
+        .service-card-desc-light { color: #9ca3af; }
+        .service-card-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; flex-grow: 1; }
+        .service-card-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--brand-darker); }
+        .service-card-list-light li { color: var(--white); }
+        .service-card-list i { color: var(--brand-red); }
+        .service-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            color: var(--brand-darker);
+            border-bottom: 2px solid var(--brand-darker);
+            padding-bottom: 0.25rem;
+            transition: color .2s;
+            align-self: flex-start;
+        }
+        .service-link:hover { color: var(--brand-red); border-color: var(--brand-red); }
+        .service-link-accent { color: var(--brand-red); border-color: var(--brand-red); }
+        .service-link-accent:hover { color: var(--white); border-color: var(--white); }
+
+        /* ========================
+           HOW IT WORKS
+        ======================== */
+        .hiw-grid { display: grid; gap: 4rem; }
+        @media (min-width: 1024px) { .hiw-grid { grid-template-columns: repeat(2, 1fr); align-items: center; } }
+
+        .hiw-title { font-size: clamp(2.5rem, 6vw, 3.75rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; margin-bottom: 1.5rem; }
+        .hiw-desc { color: #9ca3af; font-size: 1.125rem; margin-bottom: 2.5rem; }
+        .hiw-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            font-weight: 700; color: var(--brand-red);
+            border-bottom: 2px solid var(--brand-red); padding-bottom: 0.25rem;
+            transition: color .2s;
+        }
+        .hiw-link:hover { color: var(--white); border-color: var(--white); }
+        .hiw-steps { display: flex; flex-direction: column; gap: 0; }
+        .hiw-step { display: flex; gap: 1.5rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,.1); margin-bottom: 2rem; }
+        .hiw-step:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+        .hiw-step-num {
+            flex-shrink: 0;
+            width: 2.5rem; height: 2.5rem;
+            border-radius: 50%;
+            border: 1px solid rgba(255,255,255,.2);
+            display: flex; align-items: center; justify-content: center;
+            color: var(--brand-red); font-weight: 700; font-size: 0.875rem;
+        }
+        .hiw-step h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .hiw-step p { color: #9ca3af; font-size: 0.875rem; }
+
+        /* ========================
+           LOCATION / MAP
+        ======================== */
+        .location-grid { display: grid; gap: 4rem; }
+        @media (min-width: 1024px) { .location-grid { grid-template-columns: repeat(2, 1fr); align-items: center; } }
+
+        .map-wrap {
+            position: relative;
+            background: var(--white);
+            padding: 0.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,.12);
+            border: 1px solid #f1f5f9;
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+        }
+        @media (min-width: 768px) { .map-wrap { aspect-ratio: 4/3; } }
+        .map-wrap iframe { width: 100%; height: 100%; border: 0; border-radius: 0.75rem; display: block; }
+        .map-badge {
+            position: absolute;
+            bottom: 1.5rem; left: 1.5rem;
+            background: var(--white);
+            padding: 0.75rem 1.25rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,.15);
+            border: 1px solid #f1f5f9;
+            pointer-events: none;
+        }
+        .map-badge .badge-label { font-size: 0.625rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.25rem; }
+        .map-badge .badge-city { font-weight: 700; color: var(--brand-darker); }
+
+        .location-content { }
+        .rating-card {
+            display: flex; align-items: center; gap: 1rem;
+            background: var(--white); padding: 1rem;
+            border-radius: 0.75rem; border: 1px solid #f1f5f9;
+            box-shadow: 0 1px 6px rgba(0,0,0,.06);
+            margin-bottom: 1.5rem;
+        }
+        .rating-logo { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: #f8fafc; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .rating-stars { display: flex; color: #f59e0b; font-size: 0.625rem; }
+        .rating-info { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.25rem; }
+        .rating-score { font-weight: 700; color: var(--brand-darker); font-size: 0.875rem; }
+        .rating-count { font-size: 0.75rem; color: #6b7280; font-weight: 600; }
+        .rating-note { font-size: 0.75rem; color: #9ca3af; }
+        .location-note {
+            display: flex; align-items: flex-start; gap: 1rem;
+            background: var(--white); padding: 1rem;
+            border-radius: 0.75rem; border: 1px solid #f1f5f9;
+            margin-bottom: 1.5rem;
+        }
+        .location-note i { color: var(--brand-red); font-size: 1.25rem; margin-top: 0.25rem; }
+        .location-note strong { font-size: 0.875rem; font-weight: 700; color: var(--brand-darker); display: block; margin-bottom: 0.25rem; }
+        .location-note p { font-size: 0.875rem; color: #6b7280; }
+        .btn-dark {
+            display: inline-flex; align-items: center; gap: 0.75rem;
+            background: var(--brand-dark); color: var(--white);
+            font-weight: 700; padding: 1rem 2rem;
+            border-radius: 0.5rem; transition: background .2s;
+            min-height: 48px;
+        }
+        .btn-dark:hover { background: var(--brand-darker); color: var(--white); }
+
+        /* ========================
+           TESTIMONIALS
+        ======================== */
+        .testimonials-wrap { position: relative; background: #0A0E1A; border-radius: 2rem; padding: 2rem; border: 1px solid rgba(255,255,255,.05); max-width: 64rem; margin: 0 auto; }
+        @media (min-width: 768px) { .testimonials-wrap { padding: 3rem; } }
+        .testimonials-center { max-width: 1280px; margin: 0 auto; text-align: center; }
+        .testimonials-title { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 700; color: var(--brand-darker); margin-bottom: 1rem; }
+        .testimonials-desc { color: #6b7280; max-width: 42rem; margin: 0 auto 4rem; font-size: 0.9375rem; }
+        .quote-icon {
+            position: absolute;
+            width: 2.5rem; height: 2.5rem;
+            background: #FF5B22;
+            border-radius: 0.75rem;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,.2);
+            z-index: 20;
+        }
+        .quote-icon-top { top: -1.25rem; left: 2rem; }
+        .quote-icon-bottom { bottom: -1.25rem; right: 2rem; }
+        .review-btn {
+            position: absolute;
+            top: 50%; transform: translateY(-50%);
+            background: #121824;
+            border: 1px solid rgba(255,255,255,.1);
+            color: var(--white);
+            width: 2.5rem; height: 2.5rem;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            transition: background .2s;
+            z-index: 20;
+            box-shadow: 0 4px 12px rgba(0,0,0,.2);
+            min-width: 40px; min-height: 40px;
+        }
+        .review-btn:hover { background: #1b2334; }
+        .review-btn-prev { left: -1.25rem; }
+        .review-btn-next { right: -1.25rem; }
+        .testimonials-viewport { overflow: hidden; padding: 0.5rem 0.5rem 0.5rem; }
+        .testimonials-track { display: flex; gap: 1.5rem; transition: transform 0.5s ease-in-out; will-change: transform; }
+        .review-card {
+            background: #121824;
+            border: 1px solid rgba(255,255,255,.05);
+            border-radius: 1rem;
+            padding: 1.5rem;
+            display: flex; flex-direction: column; align-items: center; text-align: center;
+            width: 100%;
+            flex-shrink: 0;
+            select: none;
+        }
+        @media (min-width: 768px) { .review-card { width: calc(50% - 12px); } }
+        @media (min-width: 1024px) { .review-card { width: calc(33.333% - 16px); } }
+        .review-avatar-wrap { position: relative; width: 4rem; height: 4rem; margin-bottom: 1rem; }
+        .review-avatar {
+            width: 100%; height: 100%; border-radius: 50%;
+            background: #334155; display: flex; align-items: center; justify-content: center;
+            color: var(--white); font-weight: 700; font-size: 1.125rem;
+            border: 2px solid rgba(255,255,255,.1);
+        }
+        .review-avatar-badge {
+            position: absolute; bottom: -0.25rem; right: -0.25rem;
+            background: var(--white); width: 1.25rem; height: 1.25rem;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,.15);
+        }
+        .review-name { font-weight: 700; color: var(--white); font-size: 0.875rem; margin-bottom: 0.125rem; }
+        .review-date { font-size: 0.625rem; color: #6b7280; margin-bottom: 0.75rem; display: block; }
+        .review-badge-new { background: #374151; color: var(--white); font-size: 0.5rem; font-weight: 700; padding: 0.125rem 0.375rem; border-radius: 0.25rem; text-transform: uppercase; margin-left: 0.25rem; vertical-align: middle; }
+        .review-badge-guide { color: var(--brand-red); font-weight: 600; font-size: 0.5rem; display: block; margin-top: 0.125rem; }
+        .review-stars { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 1rem; justify-content: center; }
+        .review-stars-inner { display: flex; color: #f59e0b; font-size: 0.625rem; }
+        .review-stars .check-icon { color: #3b82f6; font-size: 0.625rem; }
+        .review-text { font-size: 0.75rem; color: #d1d5db; line-height: 1.6; font-weight: 300; }
+
+        /* ========================
+           WHY CHOOSE US
+        ======================== */
+        .why-grid { display: grid; gap: 2rem; }
+        @media (min-width: 768px) { .why-grid { grid-template-columns: repeat(2, 1fr); } }
+        @media (min-width: 1024px) { .why-grid { grid-template-columns: repeat(4, 1fr); } }
+
+        .why-card { border: 1px solid #f1f5f9; border-radius: 0.75rem; padding: 2rem; text-align: left; transition: box-shadow .2s; }
+        .why-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.08); }
+        .why-card i { font-size: 1.5rem; color: var(--brand-red); display: block; margin-bottom: 1.5rem; }
+        .why-card h3 { font-weight: 700; color: var(--brand-darker); margin-bottom: 0.75rem; font-size: 1rem; }
+        .why-card p { font-size: 0.875rem; color: #4b5563; }
+
+        /* ========================
+           CTA BANNER
+        ======================== */
+        .cta-section { padding: 6rem 1.5rem 8rem; }
+        @media (min-width: 768px) { .cta-section { padding: 6rem 3rem 8rem; } }
+        @media (min-width: 1024px) { .cta-section { padding: 6rem 6rem 8rem; } }
+        .cta-inner {
+            max-width: 64rem; margin: 0 auto;
+            background: var(--brand-red);
+            border-radius: 1.5rem;
+            padding: 2.5rem;
+            position: relative; overflow: hidden;
+            display: flex; flex-direction: column; gap: 2.5rem;
+        }
+        @media (min-width: 768px) {
+            .cta-inner { padding: 4rem; flex-direction: row; align-items: center; justify-content: space-between; }
+        }
+        .cta-deco {
+            position: absolute; right: -2.5rem; bottom: -2.5rem;
+            font-size: 12.5rem; font-weight: 900; color: rgba(0,0,0,.05);
+            line-height: 1; pointer-events: none;
+        }
+        .cta-badge {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            background: rgba(0,0,0,.1); border-radius: 9999px;
+            padding: 0.375rem 1rem; font-size: 0.75rem; font-weight: 700;
+            text-transform: uppercase; letter-spacing: 0.05em;
+            color: var(--brand-darker); margin-bottom: 1.5rem;
+        }
+        .cta-badge-dot { width: 0.5rem; height: 0.5rem; border-radius: 50%; background: #16a34a; }
+        .cta-title { font-size: clamp(2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.02em; color: var(--brand-darker); margin-bottom: 1rem; line-height: 1.15; }
+        .cta-title span { color: var(--white); }
+        .cta-desc { color: rgba(17,17,17,.8); font-weight: 500; }
+        .cta-actions { display: flex; flex-direction: column; gap: 1rem; flex-shrink: 0; }
+        .btn-darker {
+            display: flex; align-items: center; justify-content: center; gap: 0.75rem;
+            background: var(--brand-darker); color: var(--white);
+            font-weight: 700; padding: 1rem 2rem; border-radius: 0.5rem;
+            transition: background .2s; min-height: 48px;
+        }
+        .btn-darker:hover { background: #000; color: var(--white); }
+        .cta-phone-link { display: flex; align-items: center; justify-content: center; gap: 0.75rem; color: var(--brand-darker); transition: color .2s; }
+        .cta-phone-link:hover { color: #000; }
+        .cta-phone-link i { flex-shrink: 0; }
+        .cta-phone-text .phone-line1 { font-weight: 700; font-size: 0.75rem; display: block; }
+        .cta-phone-text .phone-line2 { font-weight: 700; font-size: 1rem; }
+
+        /* ========================
+           FOOTER
+        ======================== */
+        .footer {
+            background: var(--brand-darker);
+            color: var(--white);
+            padding: 4rem 1.5rem 2rem;
+        }
+        @media (min-width: 768px) { .footer { padding: 4rem 3rem 2rem; } }
+        @media (min-width: 1024px) { .footer { padding: 4rem 6rem 2rem; } }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            padding-bottom: 3rem; margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) {
+            .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; }
+        }
+        .footer-logo img { height: 6rem; width: auto; }
+        .footer-tagline { font-size: 0.875rem; color: #9ca3af; max-width: 18rem; }
+        .footer-nav { display: flex; flex-direction: column; gap: 0.75rem; font-size: 0.875rem; font-weight: 500; }
+        .footer-nav a:hover { color: var(--brand-red); transition: color .2s; }
+        .footer-nav button { text-align: left; font-size: 0.875rem; font-weight: 500; color: inherit; }
+        .footer-nav button:hover { color: var(--brand-red); transition: color .2s; }
+        .footer-copy { font-size: 0.75rem; color: #4b5563; }
+
+        /* ========================
+           FLOATING WHATSAPP BUTTON
+        ======================== */
+        .whatsapp-float {
+            position: fixed; bottom: 1.5rem; right: 1.5rem;
+            background: #25D366; color: var(--white);
+            border-radius: 9999px; padding: 0.75rem 1.5rem;
+            box-shadow: 0 8px 30px rgba(0,0,0,.2);
+            display: flex; align-items: center; gap: 0.75rem;
+            font-weight: 700; transition: transform .2s, background .2s;
+            z-index: 50;
+            min-height: 48px;
+        }
+        .whatsapp-float:hover { background: #20bd5a; transform: scale(1.05); color: var(--white); }
+        .whatsapp-float i { font-size: 1.5rem; }
+        .whatsapp-float span { display: none; }
+        @media (min-width: 768px) { .whatsapp-float span { display: inline; } }
+
+        /* ========================
+           COOKIE BANNER
+        ======================== */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: var(--white); border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -4px 30px rgba(0,0,0,.08);
+            z-index: 100;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+            display: flex; flex-direction: column;
+            align-items: flex-start; gap: 1rem;
+            padding: 1rem 1.5rem;
+        }
+        .cookie-banner.visible { transform: translateY(0); }
+        @media (min-width: 768px) {
+            .cookie-banner {
+                flex-direction: row; align-items: center; justify-content: space-between;
+                padding: 1rem 3rem;
+            }
+        }
+        @media (min-width: 1024px) { .cookie-banner { padding: 1rem 6rem; } }
+        .cookie-text { font-size: 0.875rem; color: #374151; }
+        .cookie-text a { color: var(--brand-red); font-weight: 700; }
+        .cookie-text a:hover { text-decoration: underline; }
+        .cookie-actions { display: flex; gap: 0.75rem; flex-shrink: 0; width: 100%; }
+        @media (min-width: 768px) { .cookie-actions { width: auto; } }
+        .btn-outline {
+            flex: 1;
+            padding: 0.5rem 1.5rem; border: 1px solid #d1d5db;
+            color: #374151; font-weight: 700; border-radius: 0.5rem;
+            transition: background .2s; min-height: 44px;
+        }
+        .btn-outline:hover { background: #f3f4f6; }
+        .btn-accept {
+            flex: 1;
+            padding: 0.5rem 1.5rem; background: var(--brand-red);
+            color: var(--white); font-weight: 700; border-radius: 0.5rem;
+            transition: background .2s; min-height: 44px;
+        }
+        .btn-accept:hover { background: var(--brand-red-hover); }
+        @media (min-width: 768px) {
+            .btn-outline, .btn-accept { flex: none; }
+        }
+
+        /* ========================
+           UTILITY CLASSES DE TEXTO
+        ======================== */
+        .text-center { text-align: center; }
+        .text-red { color: var(--brand-red); }
+        .text-white { color: var(--white); }
+        .text-gray { color: #6b7280; }
+        .text-sm { font-size: 0.875rem; }
+        .font-bold { font-weight: 700; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mt-auto { margin-top: auto; }
     </style>
+
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -100,15 +906,7 @@
       },
       "openingHoursSpecification": {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-          "Sunday"
-        ],
+        "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
         "opens": "00:00",
         "closes": "23:59"
       },
@@ -116,832 +914,773 @@
     }
     </script>
 </head>
-<body class="font-sans text-slate-800 bg-white">
-    
+<body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB969BJJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
-    <!-- Navbar -->
-    <nav class="w-full bg-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-            <img src="./assets/images/logo-hero.png" alt="027 Assistência 24HS" class="h-14 w-auto">
+    <!-- ========================
+         NAVBAR
+    ======================== -->
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="navbar-logo">
+            <a href="/" aria-label="027 Assistência 24HS — Página inicial">
+                <img src="./assets/images/logo-hero.webp?v=2" alt="027 Assistência 24HS" width="480" height="480" fetchpriority="high">
+            </a>
         </div>
         
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
-            <a href="#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
-            <a href="#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
+        <div class="navbar-links">
+            <a href="#servicos">Serviços</a>
+            <a href="#como-funciona">Como funciona</a>
+            <a href="#area">Área de atendimento</a>
         </div>
 
-        <a href="tel:+5527999825891" class="hidden md:flex items-center gap-3 hover:text-brand-yellow transition-colors">
-            <i class="fa-solid fa-phone text-brand-yellow text-xl"></i>
+        <a href="tel:+5527999825891" class="navbar-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
-                <p class="font-bold text-brand-darker">(27) 99982-5891</p>
+                <p class="phone-label">Ligue Agora</p>
+                <p class="phone-number">(27) 99982-5891</p>
             </div>
         </a>
         
-        <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-darker cursor-pointer">
-            <i class="fa-solid fa-bars"></i>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
     </nav>
 
     <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-6 hidden">
-        <button id="mobile-menu-close" class="absolute top-6 right-6 text-3xl text-brand-darker">
-            <i class="fa-solid fa-xmark"></i>
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação" hidden="">
+        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Fechar menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
-        <div class="flex flex-col gap-6 text-xl font-bold mt-10">
-            <a href="#servicos" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Serviços</a>
-            <a href="#como-funciona" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Como funciona</a>
-            <a href="#area" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Área de atendimento</a>
-        </div>
-        <a href="tel:+5527999825891" class="mt-8 flex items-center gap-4 bg-brand-gray p-4 rounded-xl">
-            <i class="fa-solid fa-phone text-brand-yellow text-2xl"></i>
+        <nav class="mobile-menu-nav" aria-label="Links de navegação">
+            <a href="#servicos" class="mobile-link">Serviços</a>
+            <a href="#como-funciona" class="mobile-link">Como funciona</a>
+            <a href="#area" class="mobile-link">Área de atendimento</a>
+        </nav>
+        <a href="tel:+5527999825891" class="mobile-menu-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
-                <p class="font-bold text-brand-darker text-lg">(27) 99982-5891</p>
+                <p class="phone-label">Ligue Agora</p>
+                <p class="phone-number">(27) 99982-5891</p>
             </div>
         </a>
     </div>
 
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
+        (function() {
+            const btn = document.getElementById('mobile-menu-btn');
+            const closeBtn = document.getElementById('mobile-menu-close');
+            const menu = document.getElementById('mobile-menu');
+            const links = document.querySelectorAll('.mobile-link');
 
-        function openMenu() {
-            mobileMenu.classList.remove('hidden');
-            // Timeout to allow display:block to apply before animating
-            setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
-            document.body.style.overflow = 'hidden'; // Prevent scrolling
-        }
+            function openMenu() {
+                menu.hidden = false;
+                requestAnimationFrame(() => menu.classList.add('open'));
+                document.body.style.overflow = 'hidden';
+                btn.setAttribute('aria-expanded', 'true');
+            }
+            function closeMenu() {
+                menu.classList.remove('open');
+                setTimeout(() => { menu.hidden = true; }, 300);
+                document.body.style.overflow = '';
+                btn.setAttribute('aria-expanded', 'false');
+            }
 
-        function closeMenu() {
-            mobileMenu.classList.add('translate-x-full');
-            setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-            document.body.style.overflow = '';
-        }
-
-        mobileMenuBtn.addEventListener('click', openMenu);
-        mobileMenuClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+            btn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            links.forEach(l => l.addEventListener('click', closeMenu));
+        })();
     </script>
 
-    <!-- Hero Section -->
-    <header class="hero-bg text-white pt-24 pb-32 px-6 md:px-12 lg:px-24 relative overflow-hidden">
-        <!-- Logo no canto superior direito do Hero -->
-        <div class="hidden md:block absolute top-6 right-6 md:top-10 md:right-10 z-20">
-            <img src="./assets/images/logo-transparente.png" alt="027 Assistência 24HS" class="h-36 md:h-48 lg:h-56 w-auto drop-shadow-2xl">
+    <!-- ========================
+         MAIN CONTENT
+    ======================== -->
+    <main id="conteudo-principal">
+
+    <!-- Hero Section (LCP) -->
+    <header class="hero" role="banner">
+        <!-- Logo decorativa desktop -->
+        <div class="hero-logo" aria-hidden="true">
+            <img src="./assets/images/logo-transparente.webp?v=2" alt="" width="480" height="480" loading="eager">
         </div>
-        <div class="max-w-3xl">
-            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur border border-white/20 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-wider mb-6">
-                <span class="w-2 h-2 rounded-full bg-green-500"></span>
+
+        <div class="hero-inner">
+            <div class="hero-badge" aria-label="Atendimento disponível 24 horas todos os dias">
+                <span class="hero-badge-dot" aria-hidden="true"></span>
                 Atendimento 24 horas - Todos os dias
             </div>
             
-            <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            <h1>
                 Baterias e<br>
-                <span class="text-brand-yellow">Guincho 24hrs em Colatina.</span>
+                <span>Guincho 24hrs em Colatina.</span>
             </h1>
             
-            <p class="text-lg text-gray-300 mb-10 max-w-2xl">
+            <p class="hero-description">
                 Atendimento rápido em Colatina e região, com troca de bateria no local e remoção segura do seu veículo. Chame agora e receba ajuda onde estiver.
             </p>
             
-            <div class="flex flex-col sm:flex-row gap-4 mb-12">
-                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" class="bg-brand-yellow hover:bg-brand-yellow-hover text-brand-darker font-bold py-4 px-8 rounded-lg flex items-center justify-center gap-3 transition-colors">
-                    <i class="fa-solid fa-truck-pickup"></i> Preciso de um Guincho <i class="fa-solid fa-arrow-right ml-2"></i>
+            <div class="hero-ctas">
+                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="btn-primary" data-cta-location="hero">
+                    <i class="fa-solid fa-truck-pickup" aria-hidden="true"></i>
+                    Preciso de um Guincho
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
-                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" class="bg-white/10 hover:bg-white/20 backdrop-blur border border-white/20 text-white font-bold py-4 px-8 rounded-lg flex items-center justify-center gap-3 transition-colors">
-                    <i class="fa-solid fa-car-battery"></i> Preciso de uma Bateria <i class="fa-solid fa-arrow-right ml-2"></i>
+                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="btn-secondary" data-cta-location="hero">
+                    <i class="fa-solid fa-car-battery" aria-hidden="true"></i>
+                    Preciso de uma Bateria
+                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
             </div>
             
-            <div class="flex flex-wrap gap-6 text-sm font-medium text-gray-300">
-                <div class="flex items-center gap-2"><i class="fa-regular fa-clock text-brand-yellow"></i> Chegada rápida</div>
-                <div class="flex items-center gap-2"><i class="fa-solid fa-shield-halved text-brand-yellow"></i> Atendimento seguro</div>
-                <div class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-brand-yellow"></i> Colatina e região</div>
+            <div class="hero-features" aria-label="Diferenciais do serviço">
+                <div><i class="fa-regular fa-clock" aria-hidden="true"></i> Chegada rápida</div>
+                <div><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Atendimento seguro</div>
+                <div><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Colatina e região</div>
             </div>
         </div>
     </header>
+    <main>
 
-    <!-- Yellow Features Bar -->
-    <section class="bg-brand-yellow text-brand-darker grid grid-cols-2 md:grid-cols-4 divide-x divide-black/10 border-y border-black/10">
-        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-            <span class="font-bold text-xl md:text-2xl">24H</span>
-            <span class="text-xs font-semibold leading-tight uppercase">Disponíveis dia<br>e noite</span>
+    <!-- Features Bar -->
+    <section class="features-bar" aria-label="Nossos diferenciais">
+        <div class="features-bar-item">
+            <strong>24H</strong>
+            <span>Disponíveis dia<br>e noite</span>
         </div>
-        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-            <span class="font-bold text-xl md:text-2xl">ÁGIL</span>
-            <span class="text-xs font-semibold leading-tight uppercase">Atendimento sem<br>enrolação</span>
+        <div class="features-bar-item">
+            <strong>ÁGIL</strong>
+            <span>Atendimento sem<br>enrolação</span>
         </div>
-        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-            <span class="font-bold text-xl md:text-2xl">LOCAL</span>
-            <span class="text-xs font-semibold leading-tight uppercase">Conhecemos toda<br>a região</span>
+        <div class="features-bar-item">
+            <strong>LOCAL</strong>
+            <span>Conhecemos toda<br>a região</span>
         </div>
-        <div class="p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-            <span class="font-bold text-xl md:text-2xl">SEGURO</span>
-            <span class="text-xs font-semibold leading-tight uppercase">Cuidado com seu<br>veículo</span>
+        <div class="features-bar-item">
+            <strong>SEGURO</strong>
+            <span>Cuidado com seu<br>veículo</span>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="servicos" class="py-24 px-6 md:px-12 lg:px-24 bg-brand-gray">
-        <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-8">
+    <section id="servicos" class="section section-bg-gray" aria-labelledby="servicos-titulo">
+        <div class="container">
+            <div class="section-header">
                 <div>
-                    <p class="text-brand-yellow font-bold text-sm tracking-widest uppercase mb-4">Nossos Serviços</p>
-                    <h2 class="text-4xl md:text-5xl font-bold text-brand-darker tracking-tight leading-tight">
+                    <p class="section-label">Nossos Serviços</p>
+                    <h2 id="servicos-titulo" class="section-title">
                         Dois serviços.<br>
-                        <span class="text-gray-400">Uma solução completa.</span>
+                        <span class="muted">Uma solução completa.</span>
                     </h2>
                 </div>
-                <p class="text-gray-600 max-w-md">
+                <p class="section-subtitle">
                     Independentemente do problema, você fala com uma única equipe pronta para colocar seu veículo de volta em movimento.
                 </p>
             </div>
 
-            <div class="grid md:grid-cols-2 gap-8">
-                <!-- Service 1 com Carrossel de Fotos -->
-                <div class="bg-white rounded-2xl shadow-sm border border-gray-100 flex flex-col h-full overflow-hidden">
-                    <!-- Carrossel de fotos -->
-                    <div class="relative w-full overflow-hidden bg-brand-dark" style="aspect-ratio: 4/3; max-height: 420px;">
-                        <div id="service-carousel" class="flex h-full transition-transform duration-500 ease-in-out">
-                            <img src="./assets/images/servico1.jpg" alt="Carro sendo colocado em guincho em Colatina" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/servico2.jpg" alt="Caminhão guincho realizando resgate de veículo" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/servico3.jpg" alt="Transporte seguro de veículo no guincho" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/servico4.jpg" alt="Atendimento de guincho 24 horas" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
+            <div class="services-grid">
+                <!-- Card Guincho -->
+                <article class="service-card">
+                    <!-- Carrossel Guincho -->
+                    <div class="carousel-wrap" aria-label="Fotos do serviço de guincho" role="region">
+                        <div id="service-carousel" class="carousel-track" aria-live="polite">
+                            <img src="./assets/images/servico1.webp?v=2" alt="Carro sendo colocado em guincho em Colatina" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/servico2.webp?v=2" alt="Caminhão guincho realizando resgate de veículo" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/servico3.webp?v=2" alt="Transporte seguro de veículo no guincho" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/servico4.webp?v=2" alt="Atendimento de guincho 24 horas" width="900" height="680" loading="lazy" decoding="async">
                         </div>
-                        <!-- Botões de navegação -->
-                        <button id="sc-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors z-10">
-                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        <button id="sc-prev" class="carousel-btn carousel-btn-prev" aria-label="Foto anterior do guincho">
+                            <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
                         </button>
-                        <button id="sc-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors z-10">
-                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        <button id="sc-next" class="carousel-btn carousel-btn-next" aria-label="Próxima foto do guincho">
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
                         </button>
-                        <!-- Dots indicadores -->
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                            <span class="sc-dot w-2 h-2 rounded-full bg-white opacity-100 transition-opacity cursor-pointer" data-index="0"></span>
-                            <span class="sc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="1"></span>
-                            <span class="sc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="2"></span>
-                            <span class="sc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="3"></span>
+                        <div class="carousel-dots" role="tablist" aria-label="Selecionar foto">
+                            <button class="carousel-dot active" data-index="0" role="tab" aria-label="Foto 1 do guincho" aria-selected="true"></button>
+                            <button class="carousel-dot" data-index="1" role="tab" aria-label="Foto 2 do guincho" aria-selected="false"></button>
+                            <button class="carousel-dot" data-index="2" role="tab" aria-label="Foto 3 do guincho" aria-selected="false"></button>
+                            <button class="carousel-dot" data-index="3" role="tab" aria-label="Foto 4 do guincho" aria-selected="false"></button>
                         </div>
                     </div>
-
-                    <!-- Conteúdo do card -->
-                    <div class="p-10 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-16 h-16 bg-[#fff0f0] text-brand-yellow rounded-xl flex items-center justify-center text-3xl">
-                                <i class="fa-solid fa-truck-pickup"></i>
-                            </div>
-                            <span class="text-6xl font-bold text-gray-100">01</span>
+                    <!-- Conteúdo -->
+                    <div class="service-card-body">
+                        <div class="service-icon-row">
+                            <div class="service-icon"><i class="fa-solid fa-truck-pickup" aria-hidden="true"></i></div>
+                            <span class="service-number" aria-hidden="true">01</span>
                         </div>
-                        <p class="text-xs font-bold tracking-widest uppercase text-gray-500 mb-2">Resgate e transporte</p>
-                        <h3 class="text-3xl font-bold text-brand-darker mb-6">Guincho 24h</h3>
-                        <p class="text-gray-600 mb-8">
+                        <p class="service-type">Resgate e transporte</p>
+                        <h3 class="service-card-title">Guincho 24h</h3>
+                        <p class="service-card-desc">
                             Seu veículo parou, sofreu pane ou precisa ser transportado? Fazemos o resgate com agilidade e cuidado, a qualquer hora.
                         </p>
-                        <ul class="space-y-4 mb-12 flex-grow">
-                            <li class="flex items-center gap-3 text-sm font-semibold text-brand-darker"><i class="fa-solid fa-check text-brand-yellow"></i> Pane mecânica ou elétrica</li>
-                            <li class="flex items-center gap-3 text-sm font-semibold text-brand-darker"><i class="fa-solid fa-check text-brand-yellow"></i> Veículo acidentado</li>
-                            <li class="flex items-center gap-3 text-sm font-semibold text-brand-darker"><i class="fa-solid fa-check text-brand-yellow"></i> Transporte de carros e motos</li>
+                        <ul class="service-card-list">
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Pane mecânica ou elétrica</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Veículo acidentado</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Transporte de carros e motos</li>
                         </ul>
-                        <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" class="font-bold text-brand-darker hover:text-brand-yellow transition-colors inline-flex items-center gap-2 border-b-2 border-brand-darker pb-1 self-start">
-                            Chamar um guincho <i class="fa-solid fa-arrow-right"></i>
+                        <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="service-link" data-cta-location="servicos">
+                            Chamar um guincho <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </a>
                     </div>
-                </div>
+                </article>
 
-                <!-- Service 2 com Carrossel de Fotos -->
-                <div class="bg-brand-dark text-white rounded-2xl shadow-lg border-t-4 border-brand-yellow flex flex-col h-full overflow-hidden">
-                    <!-- Carrossel de fotos -->
-                    <div class="relative w-full overflow-hidden bg-brand-dark" style="aspect-ratio: 4/3; max-height: 420px;">
-                        <div id="battery-carousel" class="flex h-full transition-transform duration-500 ease-in-out">
-                            <img src="./assets/images/bateria1.jpg" alt="Troca de bateria automotiva no local em Colatina" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/bateria2.jpg" alt="Atendimento para pane elétrica e troca de bateria" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/bateria3.jpg" alt="Instalação de bateria nova em veículo" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
-                            <img src="./assets/images/bateria4.jpg" alt="Serviço de bateria 24 horas" loading="lazy" class="w-full h-full object-cover flex-shrink-0">
+                <!-- Card Baterias -->
+                <article class="service-card-dark">
+                    <!-- Carrossel Baterias -->
+                    <div class="carousel-wrap" aria-label="Fotos do serviço de baterias" role="region">
+                        <div id="battery-carousel" class="carousel-track" aria-live="polite">
+                            <img src="./assets/images/bateria1.webp?v=2" alt="Troca de bateria automotiva no local em Colatina" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/bateria2.webp?v=2" alt="Atendimento para pane elétrica e troca de bateria" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/bateria3.webp?v=2" alt="Instalação de bateria nova em veículo" width="900" height="680" loading="lazy" decoding="async">
+                            <img src="./assets/images/bateria4.webp?v=2" alt="Serviço de bateria 24 horas" width="900" height="680" loading="lazy" decoding="async">
                         </div>
-                        <!-- Botões de navegação -->
-                        <button id="bc-prev" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors z-10">
-                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        <button id="bc-prev" class="carousel-btn carousel-btn-prev" aria-label="Foto anterior de baterias">
+                            <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
                         </button>
-                        <button id="bc-next" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white w-9 h-9 rounded-full flex items-center justify-center transition-colors z-10">
-                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        <button id="bc-next" class="carousel-btn carousel-btn-next" aria-label="Próxima foto de baterias">
+                            <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
                         </button>
-                        <!-- Dots indicadores -->
-                        <div class="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                            <span class="bc-dot w-2 h-2 rounded-full bg-white opacity-100 transition-opacity cursor-pointer" data-index="0"></span>
-                            <span class="bc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="1"></span>
-                            <span class="bc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="2"></span>
-                            <span class="bc-dot w-2 h-2 rounded-full bg-white opacity-40 transition-opacity cursor-pointer" data-index="3"></span>
+                        <div class="carousel-dots" role="tablist" aria-label="Selecionar foto">
+                            <button class="carousel-dot active" data-index="0" role="tab" aria-label="Foto 1 de baterias" aria-selected="true"></button>
+                            <button class="carousel-dot" data-index="1" role="tab" aria-label="Foto 2 de baterias" aria-selected="false"></button>
+                            <button class="carousel-dot" data-index="2" role="tab" aria-label="Foto 3 de baterias" aria-selected="false"></button>
+                            <button class="carousel-dot" data-index="3" role="tab" aria-label="Foto 4 de baterias" aria-selected="false"></button>
                         </div>
                     </div>
-
-                    <!-- Conteúdo do card -->
-                    <div class="p-10 flex flex-col flex-grow">
-                        <div class="flex justify-between items-start mb-6">
-                            <div class="w-16 h-16 bg-white/10 text-brand-yellow rounded-xl flex items-center justify-center text-3xl">
-                                <i class="fa-solid fa-car-battery"></i>
-                            </div>
-                            <span class="text-6xl font-bold text-white/5">02</span>
+                    <!-- Conteúdo -->
+                    <div class="service-card-body">
+                        <div class="service-icon-row">
+                            <div class="service-icon service-icon-dark"><i class="fa-solid fa-car-battery" aria-hidden="true"></i></div>
+                            <span class="service-number service-number-dark" aria-hidden="true">02</span>
                         </div>
-                        <p class="text-xs font-bold tracking-widest uppercase text-brand-yellow mb-2">Troca no local</p>
-                        <h3 class="text-3xl font-bold mb-6">Baterias automotivas</h3>
-                        <p class="text-gray-400 mb-8">
+                        <p class="service-type service-type-accent">Troca no local</p>
+                        <h3 class="service-card-title service-card-title-light">Baterias automotivas</h3>
+                        <p class="service-card-desc service-card-desc-light">
                             A bateria não respondeu? Levamos uma bateria adequada até você e fazemos a instalação no local, com praticidade.
                         </p>
-                        <ul class="space-y-4 mb-12 flex-grow">
-                            <li class="flex items-center gap-3 text-sm font-semibold"><i class="fa-solid fa-check text-brand-yellow"></i> Carros e motocicletas</li>
-                            <li class="flex items-center gap-3 text-sm font-semibold"><i class="fa-solid fa-check text-brand-yellow"></i> Teste do sistema de carga</li>
-                            <li class="flex items-center gap-3 text-sm font-semibold"><i class="fa-solid fa-check text-brand-yellow"></i> Instalação rápida no local</li>
+                        <ul class="service-card-list service-card-list-light">
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Carros e motocicletas</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Teste do sistema de carga</li>
+                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Instalação rápida no local</li>
                         </ul>
-                        <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" class="font-bold text-brand-yellow hover:text-white transition-colors inline-flex items-center gap-2 border-b-2 border-brand-yellow pb-1 self-start">
-                            Pedir uma bateria <i class="fa-solid fa-arrow-right"></i>
+                        <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="service-link service-link-accent" data-cta-location="servicos">
+                            Pedir uma bateria <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                         </a>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-
     <!-- How it Works -->
-    <section id="como-funciona" class="py-24 px-6 md:px-12 lg:px-24 bg-brand-dark text-white">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div>
-                <p class="text-brand-yellow font-bold text-xs tracking-widest uppercase mb-4">Atendimento sem complicação</p>
-                <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-tight mb-6">
-                    Você chama.<br>
-                    A gente vai.
-                </h2>
-                <p class="text-gray-400 mb-10 text-lg">
-                    Em uma situação de emergência, tudo precisa ser simples. Por isso, resolvemos em três passos.
-                </p>
-                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" class="font-bold text-brand-yellow hover:text-white transition-colors inline-flex items-center gap-2 border-b-2 border-brand-yellow pb-1">
-                    Solicitar atendimento agora <i class="fa-solid fa-arrow-right"></i>
-                </a>
-            </div>
+    <section id="como-funciona" class="section section-bg-dark" aria-labelledby="hiw-titulo">
+        <div class="container">
+            <div class="hiw-grid">
+                <div>
+                    <p class="section-label">Atendimento sem complicação</p>
+                    <h2 id="hiw-titulo" class="hiw-title">
+                        Você chama.<br>
+                        A gente vai.
+                    </h2>
+                    <p class="hiw-desc">
+                        Em uma situação de emergência, tudo precisa ser simples. Por isso, resolvemos em três passos.
+                    </p>
+                    <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="hiw-link" data-cta-location="desconhecido">
+                        Solicitar atendimento agora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
 
-            <div class="space-y-8">
-                <div class="flex gap-6 border-b border-white/10 pb-8">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-brand-yellow font-bold text-sm">1</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Conte o que aconteceu</h4>
-                        <p class="text-gray-400 text-sm">Fale com a equipe pelo WhatsApp ou ligação e informe sua localização.</p>
-                    </div>
-                </div>
-                <div class="flex gap-6 border-b border-white/10 pb-8">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-brand-yellow font-bold text-sm">2</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">Receba a orientação</h4>
-                        <p class="text-gray-400 text-sm">Identificamos se você precisa de guincho, bateria ou suporte imediato.</p>
-                    </div>
-                </div>
-                <div class="flex gap-6">
-                    <div class="flex-shrink-0 w-10 h-10 rounded-full border border-white/20 flex items-center justify-center text-brand-yellow font-bold text-sm">3</div>
-                    <div>
-                        <h4 class="text-xl font-bold mb-2">A equipe vai até você</h4>
-                        <p class="text-gray-400 text-sm">Deslocamos o atendimento e resolvemos o problema com segurança.</p>
-                    </div>
-                </div>
+                <ol class="hiw-steps" style="list-style:none;">
+                    <li class="hiw-step">
+                        <div class="hiw-step-num" aria-hidden="true">1</div>
+                        <div>
+                            <h3>Conte o que aconteceu</h3>
+                            <p>Fale com a equipe pelo WhatsApp ou ligação e informe sua localização.</p>
+                        </div>
+                    </li>
+                    <li class="hiw-step">
+                        <div class="hiw-step-num" aria-hidden="true">2</div>
+                        <div>
+                            <h3>Receba a orientação</h3>
+                            <p>Identificamos se você precisa de guincho, bateria ou suporte imediato.</p>
+                        </div>
+                    </li>
+                    <li class="hiw-step">
+                        <div class="hiw-step-num" aria-hidden="true">3</div>
+                        <div>
+                            <h3>A equipe vai até você</h3>
+                            <p>Deslocamos o atendimento e resolvemos o problema com segurança.</p>
+                        </div>
+                    </li>
+                </ol>
             </div>
         </div>
     </section>
 
     <!-- Location -->
-    <section id="area" class="py-24 px-6 md:px-12 lg:px-24 bg-brand-gray">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="relative bg-white p-2 rounded-2xl shadow-xl border border-gray-100 aspect-square md:aspect-[4/3] overflow-hidden">
-                <iframe 
-                    src="https://maps.google.com/maps?q=027%20Assist%C3%AAncia%2024%20horas%20Guinchos%20e%20Taxi%20Baterias%20Avenida%20Darcy%20Bernardina%20520%20Colatina%20ES&t=&z=16&ie=UTF8&iwloc=&output=embed" 
-                    width="100%" 
-                    height="100%" 
-                    style="border:0;" 
-                    allowfullscreen="" 
-                    loading="lazy" 
-                    referrerpolicy="no-referrer-when-downgrade"
-                    class="rounded-xl">
-                </iframe>
-                
-                <div class="absolute bottom-6 left-6 bg-white py-3 px-5 rounded-lg shadow-xl border border-gray-100 pointer-events-none">
-                    <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider mb-1">Base de Atendimento</p>
-                    <p class="font-bold text-brand-darker">Colatina - ES</p>
-                </div>
-            </div>
-
-            <div>
-                <p class="text-brand-yellow font-bold text-xs tracking-widest uppercase mb-4">Onde Atendemos</p>
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-brand-darker mb-6">
-                    Colatina e<br>toda a região.
-                </h2>
-                <p class="text-gray-600 mb-6">
-                    Atendimento para motoristas em Colatina e cidades próximas. Informe sua localização para confirmarmos a disponibilidade e o tempo estimado de chegada.
-                </p>
-
-                <!-- Google Rating Badge -->
-                <div class="flex items-center gap-4 mb-6 bg-white p-4 rounded-xl border border-gray-100 shadow-sm">
-                    <div class="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center flex-shrink-0">
-                        <svg class="w-6 h-6" viewBox="0 0 24 24">
-                            <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                            <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                            <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                            <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                        </svg>
+    <section id="area" class="section section-bg-gray" aria-labelledby="area-titulo">
+        <div class="container">
+            <div class="location-grid">
+                <div class="map-wrap">
+                    <iframe src="https://maps.google.com/maps?q=027%20Assist%C3%AAncia%2024%20horas%20Guinchos%20e%20Taxi%20Baterias%20Avenida%20Darcy%20Bernardina%20520%20Colatina%20ES&amp;t=&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed" title="Mapa da área de atendimento" width="100%" height="100%" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+                    </iframe>
+                    <div class="map-badge">
+                        <p class="badge-label">Base de Atendimento</p>
+                        <p class="badge-city">Colatina - ES</p>
                     </div>
-                    <div>
-                        <div class="flex items-center gap-1.5">
-                            <span class="font-bold text-brand-darker text-sm">5.0</span>
-                            <div class="flex text-amber-400 text-xs">
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                                <i class="fa-solid fa-star"></i>
-                            </div>
-                            <span class="text-xs text-gray-500 font-semibold">(140+ avaliações)</span>
+                </div>
+
+                <div class="location-content">
+                    <p class="section-label">Onde Atendemos</p>
+                    <h2 id="area-titulo" class="section-title" style="margin-bottom:1.5rem">
+                        Colatina e<br>toda a região.
+                    </h2>
+                    <p style="color:#4b5563; margin-bottom:1.5rem">
+                        Atendimento para motoristas em Colatina e cidades próximas. Informe sua localização para confirmarmos a disponibilidade e o tempo estimado de chegada.
+                    </p>
+
+                    <!-- Google Rating -->
+                    <div class="rating-card">
+                        <div class="rating-logo">
+                            <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+                                <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
+                                <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path>
+                                <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path>
+                                <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path>
+                            </svg>
                         </div>
-                        <p class="text-xs text-gray-400">Excelente reputação no Google Meu Negócio</p>
+                        <div>
+                            <div class="rating-info">
+                                <span class="rating-score">5.0</span>
+                                <div class="rating-stars" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                </div>
+                                <span class="rating-count">(140+ avaliações)</span>
+                            </div>
+                            <p class="rating-note">Excelente reputação no Google Meu Negócio</p>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="flex items-start gap-4 mb-6 bg-white p-4 rounded-xl border border-gray-100">
-                    <i class="fa-solid fa-location-crosshairs text-brand-yellow text-xl mt-1"></i>
-                    <div>
-                        <p class="font-bold text-sm text-brand-darker mb-1">Não sabe se atendemos sua localização?</p>
-                        <p class="text-sm text-gray-500">Envie seu local pelo WhatsApp.</p>
-                    </div>
-                </div>
 
-                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" class="bg-brand-dark hover:bg-brand-darker text-white font-bold py-4 px-8 rounded-lg inline-flex items-center gap-3 transition-colors">
-                    Consultar minha localização <i class="fa-solid fa-arrow-right"></i>
-                </a>
+                    <div class="location-note">
+                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                        <div>
+                            <strong>Não sabe se atendemos sua localização?</strong>
+                            <p>Envie seu local pelo WhatsApp.</p>
+                        </div>
+                    </div>
+
+                    <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="btn-dark" data-cta-location="desconhecido">
+                        Consultar minha localização <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 px-6 md:px-12 lg:px-24 bg-brand-gray">
-        <div class="max-w-7xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold text-brand-darker mb-4">O que dizem nossos clientes</h2>
-            <p class="text-gray-500 max-w-2xl mx-auto mb-16 text-sm md:text-base">
+    <section class="section section-bg-gray" aria-labelledby="depoimentos-titulo">
+        <div class="testimonials-center">
+            <h2 id="depoimentos-titulo" class="testimonials-title">O que dizem nossos clientes</h2>
+            <p class="testimonials-desc">
                 A satisfação dos clientes comprova nosso compromisso com qualidade, agilidade e confiança.
             </p>
 
-            <div class="relative bg-[#0A0E1A] text-white rounded-[32px] p-8 md:p-12 max-w-5xl mx-auto border border-white/5">
-                <!-- Large Orange Quotes -->
-                <div class="absolute -top-5 left-8 bg-[#FF5B22] text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg z-20">
-                    <i class="fa-solid fa-quote-left text-lg"></i>
+            <div class="testimonials-wrap">
+                <!-- Quote icons decorativos -->
+                <div class="quote-icon quote-icon-top" aria-hidden="true">
+                    <i class="fa-solid fa-quote-left" style="font-size:1.125rem; color:white"></i>
                 </div>
-                <div class="absolute -bottom-5 right-8 bg-[#FF5B22] text-white w-10 h-10 rounded-xl flex items-center justify-center shadow-lg z-20">
-                    <i class="fa-solid fa-quote-right text-lg"></i>
+                <div class="quote-icon quote-icon-bottom" aria-hidden="true">
+                    <i class="fa-solid fa-quote-right" style="font-size:1.125rem; color:white"></i>
                 </div>
                 
-                <!-- Left/Right Nav Arrows -->
-                <button id="prev-review" class="absolute -left-4 top-1/2 -translate-y-1/2 bg-[#121824] border border-white/10 hover:bg-[#1b2334] w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors z-20 shadow-md">
-                    <i class="fa-solid fa-chevron-left text-sm"></i>
+                <!-- Botões de navegação -->
+                <button id="prev-review" class="review-btn review-btn-prev" aria-label="Depoimento anterior">
+                    <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
                 </button>
-                <button id="next-review" class="absolute -right-4 top-1/2 -translate-y-1/2 bg-[#121824] border border-white/10 hover:bg-[#1b2334] w-10 h-10 rounded-full flex items-center justify-center text-white transition-colors z-20 shadow-md">
-                    <i class="fa-solid fa-chevron-right text-sm"></i>
+                <button id="next-review" class="review-btn review-btn-next" aria-label="Próximo depoimento">
+                    <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
                 </button>
 
-                <!-- Carousel Viewport -->
-                <div class="overflow-hidden px-2 py-4">
-                    <div id="testimonial-track" class="flex gap-6 transition-transform duration-500 ease-in-out">
+                <div class="testimonials-viewport">
+                    <div id="testimonial-track" class="testimonials-track">
                         
-                        <!-- Card 1 (Dejailson Oliveira) -->
-                        <div class="bg-[#121824] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 select-none">
-                            <div class="relative w-16 h-16 mb-4">
-                                <div class="w-full h-full rounded-full bg-slate-700 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-white/10">
-                                    DO
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 bg-white w-5 h-5 rounded-full flex items-center justify-center shadow-md">
-                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                    </svg>
+                        <!-- Card 1 -->
+                        <article class="review-card" aria-label="Depoimento de Dejailson Oliveira">
+                            <div class="review-avatar-wrap">
+                                <div class="review-avatar" aria-hidden="true">DO</div>
+                                <div class="review-avatar-badge" aria-hidden="true">
+                                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path></svg>
                                 </div>
                             </div>
-                            <h4 class="font-bold text-white text-sm mb-0.5">Dejailson Oliveira</h4>
-                            <span class="text-[10px] text-gray-500 mb-3">3 semanas atrás <span class="bg-gray-700 text-white text-[8px] font-bold px-1.5 py-0.5 rounded ml-1 uppercase">Nova</span></span>
-                            
-                            <div class="flex items-center gap-1.5 mb-4 justify-center">
-                                <div class="flex text-amber-400 text-[10px]">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                            <h3 class="review-name">Dejailson Oliveira</h3>
+                            <span class="review-date">3 semanas atrás <span class="review-badge-new">Nova</span></span>
+                            <div class="review-stars">
+                                <div class="review-stars-inner" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
                                 </div>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-[10px]"></i>
+                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
                             </div>
-                            
-                            <p class="text-xs text-gray-300 leading-relaxed font-light">
-                                "Ótimo atendimento pontual profissional que trabalha com segurança. Muito Satisfeito com o serviço prestado. Recomendo 👍👍👍👍 ..."
-                            </p>
-                        </div>
+                            <p class="review-text">"Ótimo atendimento pontual profissional que trabalha com segurança. Muito Satisfeito com o serviço prestado. Recomendo 👍👍👍👍 ..."</p>
+                        </article>
 
-                        <!-- Card 2 (Antonio Carlos Sartori) -->
-                        <div class="bg-[#121824] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 select-none">
-                            <div class="relative w-16 h-16 mb-4">
-                                <div class="w-full h-full rounded-full bg-slate-600 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-white/10">
-                                    AS
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 bg-white w-5 h-5 rounded-full flex items-center justify-center shadow-md">
-                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                    </svg>
+                        <!-- Card 2 -->
+                        <article class="review-card" aria-label="Depoimento de Antonio Carlos Sartori">
+                            <div class="review-avatar-wrap">
+                                <div class="review-avatar" style="background:#475569" aria-hidden="true">AS</div>
+                                <div class="review-avatar-badge" aria-hidden="true">
+                                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path></svg>
                                 </div>
                             </div>
-                            <h4 class="font-bold text-white text-sm mb-0.5">Antonio Carlos Sartori</h4>
-                            <span class="text-[10px] text-gray-500 mb-3">4 meses atrás</span>
-                            
-                            <div class="flex items-center gap-1.5 mb-4 justify-center">
-                                <div class="flex text-amber-400 text-[10px]">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                            <h3 class="review-name">Antonio Carlos Sartori</h3>
+                            <span class="review-date">4 meses atrás</span>
+                            <div class="review-stars">
+                                <div class="review-stars-inner" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
                                 </div>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-[10px]"></i>
+                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
                             </div>
-                            
-                            <p class="text-xs text-gray-300 leading-relaxed font-light">
-                                "O prestador de serviço da seguradora de nome João, foi um ótimo profissional no serviço de substituição de uma bateria do meu carro. Gostei muito mesmo do atendimento do João, parabéns"
-                            </p>
-                        </div>
+                            <p class="review-text">"O prestador de serviço da seguradora de nome João, foi um ótimo profissional no serviço de substituição de uma bateria do meu carro. Gostei muito mesmo do atendimento do João, parabéns"</p>
+                        </article>
 
-                        <!-- Card 3 (Claudinei Alonso Farias) -->
-                        <div class="bg-[#121824] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 select-none">
-                            <div class="relative w-16 h-16 mb-4">
-                                <div class="w-full h-full rounded-full bg-slate-800 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-white/10">
-                                    CF
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 bg-white w-5 h-5 rounded-full flex items-center justify-center shadow-md">
-                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                    </svg>
+                        <!-- Card 3 -->
+                        <article class="review-card" aria-label="Depoimento de Claudinei Alonso Farias">
+                            <div class="review-avatar-wrap">
+                                <div class="review-avatar" style="background:#1e293b" aria-hidden="true">CF</div>
+                                <div class="review-avatar-badge" aria-hidden="true">
+                                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path></svg>
                                 </div>
                             </div>
-                            <h4 class="font-bold text-white text-sm mb-0.5">Claudinei Alonso Farias</h4>
-                            <span class="text-[10px] text-gray-500 mb-3">4 meses atrás <span class="text-brand-yellow font-semibold text-[8px] block mt-0.5">Local Guide</span></span>
-                            
-                            <div class="flex items-center gap-1.5 mb-4 justify-center">
-                                <div class="flex text-amber-400 text-[10px]">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                            <h3 class="review-name">Claudinei Alonso Farias</h3>
+                            <span class="review-date">4 meses atrás <span class="review-badge-guide">Local Guide</span></span>
+                            <div class="review-stars">
+                                <div class="review-stars-inner" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
                                 </div>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-[10px]"></i>
+                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
                             </div>
-                            
-                            <p class="text-xs text-gray-300 leading-relaxed font-light">
-                                "A equipe está de parabéns, foram ágil e pontual atendendo todos os requisitos que um assegurado necessita."
-                            </p>
-                        </div>
+                            <p class="review-text">"A equipe está de parabéns, foram ágil e pontual atendendo todos os requisitos que um assegurado necessita."</p>
+                        </article>
 
-                        <!-- Card 4 (Maik Sampaio) -->
-                        <div class="bg-[#121824] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 select-none">
-                            <div class="relative w-16 h-16 mb-4">
-                                <div class="w-full h-full rounded-full bg-slate-700 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-white/10">
-                                    MS
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 bg-white w-5 h-5 rounded-full flex items-center justify-center shadow-md">
-                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                    </svg>
+                        <!-- Card 4 -->
+                        <article class="review-card" aria-label="Depoimento de Maik Sampaio">
+                            <div class="review-avatar-wrap">
+                                <div class="review-avatar" aria-hidden="true">MS</div>
+                                <div class="review-avatar-badge" aria-hidden="true">
+                                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path></svg>
                                 </div>
                             </div>
-                            <h4 class="font-bold text-white text-sm mb-0.5">Maik Sampaio</h4>
-                            <span class="text-[10px] text-gray-500 mb-3">7 meses atrás <span class="text-brand-yellow font-semibold text-[8px] block mt-0.5">Local Guide</span></span>
-                            
-                            <div class="flex items-center gap-1.5 mb-4 justify-center">
-                                <div class="flex text-amber-400 text-[10px]">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                            <h3 class="review-name">Maik Sampaio</h3>
+                            <span class="review-date">7 meses atrás <span class="review-badge-guide">Local Guide</span></span>
+                            <div class="review-stars">
+                                <div class="review-stars-inner" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
                                 </div>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-[10px]"></i>
+                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
                             </div>
-                            
-                            <p class="text-xs text-gray-300 leading-relaxed font-light">
-                                "Serviço de excelência, profissional atencioso e prestativo. Fez o serviço com agilidade e muito bem feito. Além disso, me passou informações de muito valor sobre o serviço..."
-                            </p>
-                        </div>
+                            <p class="review-text">"Serviço de excelência, profissional atencioso e prestativo. Fez o serviço com agilidade e muito bem feito. Além disso, me passou informações de muito valor sobre o serviço..."</p>
+                        </article>
 
-                        <!-- Card 5 (Nelcy Arndt) -->
-                        <div class="bg-[#121824] border border-white/5 rounded-2xl p-6 flex flex-col items-center text-center w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-16px)] shrink-0 select-none">
-                            <div class="relative w-16 h-16 mb-4">
-                                <div class="w-full h-full rounded-full bg-slate-600 flex items-center justify-center text-white font-bold text-lg overflow-hidden border-2 border-white/10">
-                                    NA
-                                </div>
-                                <div class="absolute -bottom-1 -right-1 bg-white w-5 h-5 rounded-full flex items-center justify-center shadow-md">
-                                    <svg class="w-3 h-3" viewBox="0 0 24 24">
-                                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
-                                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
-                                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
-                                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
-                                    </svg>
+                        <!-- Card 5 -->
+                        <article class="review-card" aria-label="Depoimento de Nelcy Arndt">
+                            <div class="review-avatar-wrap">
+                                <div class="review-avatar" style="background:#475569" aria-hidden="true">NA</div>
+                                <div class="review-avatar-badge" aria-hidden="true">
+                                    <svg width="12" height="12" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"></path><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"></path><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"></path></svg>
                                 </div>
                             </div>
-                            <h4 class="font-bold text-white text-sm mb-0.5">Nelcy Arndt</h4>
-                            <span class="text-[10px] text-gray-500 mb-3">7 meses atrás</span>
-                            
-                            <div class="flex items-center gap-1.5 mb-4 justify-center">
-                                <div class="flex text-amber-400 text-[10px]">
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
-                                    <i class="fa-solid fa-star"></i>
+                            <h3 class="review-name">Nelcy Arndt</h3>
+                            <span class="review-date">7 meses atrás</span>
+                            <div class="review-stars">
+                                <div class="review-stars-inner" aria-label="5 estrelas">
+                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
                                 </div>
-                                <i class="fa-solid fa-circle-check text-blue-500 text-[10px]"></i>
+                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
                             </div>
-                            
-                            <p class="text-xs text-gray-300 leading-relaxed font-light">
-                                "Extremamente satisfeitos! Precisamos trocar a bateria do carro no domingo à tarde, serviço que foi realizado de forma rápida e com muita eficiência! Ótimo atendimento!"
-                            </p>
-                        </div>
+                            <p class="review-text">"Extremamente satisfeitos! Precisamos trocar a bateria do carro no domingo à tarde, serviço que foi realizado de forma rápida e com muita eficiência! Ótimo atendimento!"</p>
+                        </article>
 
                     </div>
                 </div>
             </div>
         </div>
     </section>
-            </div>
-        </div>
-    </section>
 
     <!-- Why Choose Us -->
-    <section class="py-24 px-6 md:px-12 lg:px-24 bg-white">
-        <div class="max-w-7xl mx-auto text-center">
-            <p class="text-brand-yellow font-bold text-xs tracking-widest uppercase mb-4">Por que escolher a gente?</p>
-            <h2 class="text-4xl md:text-5xl font-bold tracking-tight leading-tight text-brand-darker mb-16">
+    <section class="section section-bg-white" aria-labelledby="vantagens-titulo">
+        <div class="container text-center">
+            <p class="section-label">Por que escolher a gente?</p>
+            <h2 id="vantagens-titulo" class="section-title" style="margin-bottom:4rem">
                 Assistência que chega<br>
-                <span class="text-gray-400">quando você mais precisa.</span>
+                <span class="muted">quando você mais precisa.</span>
             </h2>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <div class="border border-gray-100 rounded-xl p-8 text-left hover:shadow-lg transition-shadow">
-                    <i class="fa-regular fa-clock text-2xl text-brand-yellow mb-6"></i>
-                    <h4 class="font-bold text-brand-darker mb-3">24 horas de verdade</h4>
-                    <p class="text-sm text-gray-600">Atendimento todos os dias, inclusive fins de semana e feriados.</p>
+            <div class="why-grid">
+                <div class="why-card">
+                    <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                    <h3>24 horas de verdade</h3>
+                    <p>Atendimento todos os dias, inclusive fins de semana e feriados.</p>
                 </div>
-                <div class="border border-gray-100 rounded-xl p-8 text-left hover:shadow-lg transition-shadow">
-                    <i class="fa-solid fa-phone text-2xl text-brand-yellow mb-6"></i>
-                    <h4 class="font-bold text-brand-darker mb-3">Contato direto</h4>
-                    <p class="text-sm text-gray-600">Você fala com quem resolve, sem menus ou espera desnecessária.</p>
+                <div class="why-card">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <h3>Contato direto</h3>
+                    <p>Você fala com quem resolve, sem menus ou espera desnecessária.</p>
                 </div>
-                <div class="border border-gray-100 rounded-xl p-8 text-left hover:shadow-lg transition-shadow">
-                    <i class="fa-solid fa-shield-halved text-2xl text-brand-yellow mb-6"></i>
-                    <h4 class="font-bold text-brand-darker mb-3">Cuidado e segurança</h4>
-                    <p class="text-sm text-gray-600">Seu veículo tratado com responsabilidade da chamada à conclusão.</p>
+                <div class="why-card">
+                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    <h3>Cuidado e segurança</h3>
+                    <p>Seu veículo tratado com responsabilidade da chamada à conclusão.</p>
                 </div>
-                <div class="border border-gray-100 rounded-xl p-8 text-left hover:shadow-lg transition-shadow">
-                    <i class="fa-solid fa-user-group text-2xl text-brand-yellow mb-6"></i>
-                    <h4 class="font-bold text-brand-darker mb-3">Equipe da região</h4>
-                    <p class="text-sm text-gray-600">Conhecimento local para chegar até você com mais agilidade.</p>
+                <div class="why-card">
+                    <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                    <h3>Equipe da região</h3>
+                    <p>Conhecimento local para chegar até você com mais agilidade.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- CTA Banner -->
-    <section class="py-24 px-6 md:px-12 lg:px-24 bg-white pb-32">
-        <div class="max-w-5xl mx-auto bg-brand-yellow rounded-3xl p-10 md:p-16 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-10">
-            <!-- Large decorative 24H -->
-            <div class="absolute -right-10 -bottom-10 text-[200px] font-black text-black/5 leading-none pointer-events-none">
-                24H
-            </div>
+    <section class="cta-section section-bg-white" aria-labelledby="cta-titulo">
+        <div class="cta-inner">
+            <div class="cta-deco" aria-hidden="true">24H</div>
             
-            <div class="relative z-10 max-w-lg">
-                <div class="inline-flex items-center gap-2 bg-black/10 rounded-full px-4 py-1.5 text-xs font-bold uppercase tracking-wider mb-6 text-brand-darker">
-                    <span class="w-2 h-2 rounded-full bg-green-600"></span>
+            <div style="position:relative;z-index:1;max-width:32rem">
+                <div class="cta-badge">
+                    <span class="cta-badge-dot" aria-hidden="true"></span>
                     Atendimento disponível agora
                 </div>
-                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-brand-darker mb-4">
+                <h2 id="cta-titulo" class="cta-title">
                     Não fique parado.<br>
-                    <span class="text-white">Chame quem resolve.</span>
+                    <span>Chame quem resolve.</span>
                 </h2>
-                <p class="text-brand-darker/80 font-medium">Fale com a nossa equipe e solicite seu atendimento.</p>
+                <p class="cta-desc">Fale com a nossa equipe e solicite seu atendimento.</p>
             </div>
 
-            <div class="relative z-10 flex flex-col gap-4 w-full md:w-auto">
-                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" class="bg-brand-darker hover:bg-black text-white font-bold py-4 px-8 rounded-lg flex items-center justify-center gap-3 transition-colors w-full">
-                    Chamar no WhatsApp <i class="fa-solid fa-arrow-right"></i>
+            <div class="cta-actions" style="position:relative;z-index:1">
+                <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="btn-darker" data-cta-location="desconhecido">
+                    Chamar no WhatsApp <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
                 </a>
-                <a href="tel:+5527999825891" class="flex items-center justify-center gap-3 text-brand-darker hover:text-black transition-colors">
-                    <i class="fa-solid fa-phone"></i>
-                    <div class="text-sm">
-                        <span class="font-bold block text-xs">Ou ligue agora</span>
-                        <span class="font-bold">(27) 99982-5891</span>
+                <a href="tel:+5527999825891" class="cta-phone-link">
+                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <div class="cta-phone-text">
+                        <span class="phone-line1">Ou ligue agora</span>
+                        <span class="phone-line2">(27) 99982-5891</span>
                     </div>
                 </a>
             </div>
         </div>
     </section>
 
+    </main><!-- /main -->
+
     <!-- Footer -->
-    <footer class="bg-brand-darker text-white pt-16 pb-8 px-6 md:px-12 lg:px-24">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10 border-b border-white/10 pb-12 mb-8">
-            <div class="flex items-center gap-3">
-                <img src="./assets/images/logo-transparente.png" alt="027 Assistência 24HS" class="h-24 w-auto">
+    </main>
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <img src="./assets/images/logo-transparente.webp?v=2" alt="027 Assistência 24HS" width="480" height="480" loading="lazy">
             </div>
 
-            <div class="text-sm text-gray-400 max-w-xs">
+            <p class="footer-tagline">
                 Guincho e baterias automotivas. 24 horas em Colatina e região.
-            </div>
+            </p>
 
-            <div class="flex flex-col gap-3 text-sm font-medium">
-                <a href="#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
-                <a href="#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
-                <a href="#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
-            </div>
+            <nav class="footer-nav" aria-label="Links do rodapé">
+                <a href="#servicos">Serviços</a>
+                <a href="#como-funciona">Como funciona</a>
+                <a href="#area">Área de atendimento</a>
+            </nav>
             
-            <div class="flex flex-col gap-3 text-sm font-medium">
-                <a href="politica-de-privacidade.html" class="hover:text-brand-yellow transition-colors">Política de Privacidade</a>
-                <button type="button" onclick="showCookieBanner()" class="text-left hover:text-brand-yellow transition-colors">Configurações de cookies</button>
-            </div>
+            <nav class="footer-nav" aria-label="Links legais">
+                <a href="politica-de-privacidade.html">Política de Privacidade</a>
+                <button type="button" onclick="showCookieBanner()">Configurações de cookies</button>
+            </nav>
             
-            <div class="text-xs text-gray-600">
-                &copy; 2024 Assistência Automotiva 24h.
-            </div>
+            <p class="footer-copy">© 2024 Assistência Automotiva 24h.</p>
         </div>
     </footer>
 
     <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" class="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-full py-3 px-6 shadow-xl flex items-center gap-3 font-bold transition-transform hover:scale-105 z-50">
-        <i class="fa-brands fa-whatsapp text-2xl"></i>
-        <span class="hidden md:inline">Chamar agora</span>
+    <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chamar agora pelo WhatsApp" data-cta-location="desconhecido">
+        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <span>Chamar agora</span>
     </a>
 
-    <!-- Service Carousel Script -->
+    <!-- ========================
+         SCRIPTS
+    ======================== -->
+
+    <!-- Carrossel de Guincho -->
     <script>
         (function() {
-            const carousel = document.getElementById('service-carousel');
-            const dots = document.querySelectorAll('.sc-dot');
-            const total = 4;
-            let scIndex = 0;
-            let autoTimer;
+            var carousel = document.getElementById('service-carousel');
+            var dots = carousel.closest('.carousel-wrap').querySelectorAll('.carousel-dot');
+            var total = 4;
+            var idx = 0;
+            var timer;
 
             function goTo(i) {
-                scIndex = i;
-                carousel.style.transform = `translateX(-${scIndex * 100}%)`;
-                dots.forEach((d, idx) => {
-                    d.style.opacity = idx === scIndex ? '1' : '0.4';
+                idx = i;
+                carousel.style.transform = 'translateX(-' + (idx * 100) + '%)';
+                dots.forEach(function(d, n) {
+                    d.classList.toggle('active', n === idx);
+                    d.setAttribute('aria-selected', n === idx ? 'true' : 'false');
                 });
             }
+            function next() { goTo((idx + 1) % total); }
+            function prev() { goTo((idx - 1 + total) % total); }
+            function reset() { clearInterval(timer); timer = setInterval(next, 4000); }
 
-            function next() { goTo((scIndex + 1) % total); }
-            function prev() { goTo((scIndex - 1 + total) % total); }
-
-            function resetTimer() {
-                clearInterval(autoTimer);
-                autoTimer = setInterval(next, 4000);
-            }
-
-            document.getElementById('sc-next').addEventListener('click', () => { next(); resetTimer(); });
-            document.getElementById('sc-prev').addEventListener('click', () => { prev(); resetTimer(); });
-            dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.index)); resetTimer(); }));
-
-            resetTimer(); // autoplay
+            document.getElementById('sc-next').addEventListener('click', function() { next(); reset(); });
+            document.getElementById('sc-prev').addEventListener('click', function() { prev(); reset(); });
+            dots.forEach(function(d) {
+                d.addEventListener('click', function() { goTo(parseInt(d.dataset.index)); reset(); });
+            });
+            reset();
         })();
     </script>
 
-    <!-- Battery Carousel Script -->
+    <!-- Carrossel de Baterias -->
     <script>
         (function() {
-            const carousel = document.getElementById('battery-carousel');
-            const dots = document.querySelectorAll('.bc-dot');
-            const total = 4;
-            let bcIndex = 0;
-            let autoTimer;
+            var carousel = document.getElementById('battery-carousel');
+            var dots = carousel.closest('.carousel-wrap').querySelectorAll('.carousel-dot');
+            var total = 4;
+            var idx = 0;
+            var timer;
 
             function goTo(i) {
-                bcIndex = i;
-                carousel.style.transform = `translateX(-${bcIndex * 100}%)`;
-                dots.forEach((d, idx) => {
-                    d.style.opacity = idx === bcIndex ? '1' : '0.4';
+                idx = i;
+                carousel.style.transform = 'translateX(-' + (idx * 100) + '%)';
+                dots.forEach(function(d, n) {
+                    d.classList.toggle('active', n === idx);
+                    d.setAttribute('aria-selected', n === idx ? 'true' : 'false');
                 });
             }
+            function next() { goTo((idx + 1) % total); }
+            function prev() { goTo((idx - 1 + total) % total); }
+            function reset() { clearInterval(timer); timer = setInterval(next, 4600); }
 
-            function next() { goTo((bcIndex + 1) % total); }
-            function prev() { goTo((bcIndex - 1 + total) % total); }
-
-            function resetTimer() {
-                clearInterval(autoTimer);
-                autoTimer = setInterval(next, 4600); // offset do guincho para não sincronizar
-            }
-
-            document.getElementById('bc-next').addEventListener('click', () => { next(); resetTimer(); });
-            document.getElementById('bc-prev').addEventListener('click', () => { prev(); resetTimer(); });
-            dots.forEach(d => d.addEventListener('click', () => { goTo(parseInt(d.dataset.index)); resetTimer(); }));
-
-            resetTimer(); // autoplay
+            document.getElementById('bc-next').addEventListener('click', function() { next(); reset(); });
+            document.getElementById('bc-prev').addEventListener('click', function() { prev(); reset(); });
+            dots.forEach(function(d) {
+                d.addEventListener('click', function() { goTo(parseInt(d.dataset.index)); reset(); });
+            });
+            reset();
         })();
     </script>
 
-    <!-- Testimonials Slider Script -->
+    <!-- Slider de Depoimentos -->
     <script>
-        const track = document.getElementById('testimonial-track');
-        const prevBtn = document.getElementById('prev-review');
-        const nextBtn = document.getElementById('next-review');
-        let index = 0;
+        (function() {
+            var track = document.getElementById('testimonial-track');
+            var prevBtn = document.getElementById('prev-review');
+            var nextBtn = document.getElementById('next-review');
+            var index = 0;
 
-        function updateSlider() {
-            const card = track.querySelector('div');
-            const cardWidth = card.getBoundingClientRect().width;
-            const gap = 24; // gap-6 (24px)
-            track.style.transform = `translateX(-${index * (cardWidth + gap)}px)`;
-        }
-
-        function getMaxIndex() {
-            const width = window.innerWidth;
-            if (width >= 1024) return 2; // Exibe 3 cards, max scroll index é 5 - 3 = 2
-            if (width >= 768) return 3;  // Exibe 2 cards, max scroll index é 5 - 2 = 3
-            return 4;                   // Exibe 1 card, max scroll index é 5 - 1 = 4
-        }
-
-        nextBtn.addEventListener('click', () => {
-            const maxIndex = getMaxIndex();
-            if (index < maxIndex) {
-                index++;
-            } else {
-                index = 0;
+            function updateSlider() {
+                var card = track.querySelector('.review-card');
+                var cardWidth = card.getBoundingClientRect().width;
+                var gap = 24;
+                track.style.transform = 'translateX(-' + (index * (cardWidth + gap)) + 'px)';
             }
-            updateSlider();
-        });
 
-        prevBtn.addEventListener('click', () => {
-            if (index > 0) {
-                index--;
-            } else {
-                index = getMaxIndex();
+            function getMaxIndex() {
+                var w = window.innerWidth;
+                if (w >= 1024) return 2;
+                if (w >= 768) return 3;
+                return 4;
             }
-            updateSlider();
-        });
 
-        window.addEventListener('resize', () => {
-            const maxIndex = getMaxIndex();
-            if (index > maxIndex) {
-                index = maxIndex;
-            }
-            updateSlider();
-        });
+            nextBtn.addEventListener('click', function() {
+                index = index < getMaxIndex() ? index + 1 : 0;
+                updateSlider();
+            });
+            prevBtn.addEventListener('click', function() {
+                index = index > 0 ? index - 1 : getMaxIndex();
+                updateSlider();
+            });
+            window.addEventListener('resize', function() {
+                if (index > getMaxIndex()) index = getMaxIndex();
+                updateSlider();
+            });
+        })();
+    </script>
+
+    <!-- ========================
+         RASTREAMENTO WHATSAPP GTM
+         Delegação de eventos centralizada
+    ======================== -->
+    <script>
+        (function() {
+            document.addEventListener('click', function(e) {
+                // Sobe na árvore DOM para encontrar o link wa.me mesmo que o clique seja em ícone ou texto interno
+                var el = e.target;
+                var link = null;
+                while (el && el !== document.body) {
+                    if (el.tagName === 'A' && el.href &&
+                        (el.href.indexOf('wa.me') !== -1 || el.href.indexOf('api.whatsapp') !== -1)) {
+                        link = el;
+                        break;
+                    }
+                    el = el.parentElement;
+                }
+                if (!link) return;
+
+                // Normaliza o texto visível do CTA
+                var rawText = (link.innerText || link.textContent || '').trim();
+                // Remove ícones de texto e normaliza espaços
+                var textoCta = rawText.replace(/\s+/g, ' ').trim() || link.getAttribute('aria-label') || 'WhatsApp';
+
+                // Local do CTA via atributo padronizado ou fallback
+                var localCta = link.getAttribute('data-cta-location') || 'desconhecido';
+
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'conversao_iniciada',
+                    canal: 'whatsapp',
+                    texto_cta: textoCta,
+                    local_cta: localCta
+                });
+            }, true); // capture phase para pegar antes de qualquer handler
+        })();
     </script>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-2xl z-[100] transform translate-y-full transition-transform duration-300 flex flex-col md:flex-row items-center justify-between p-4 md:px-12 lg:px-24 gap-4 hidden">
-        <div class="text-sm text-gray-700">
-            Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa <a href="politica-de-privacidade.html" class="text-brand-yellow font-bold hover:underline">Política de Privacidade</a> para entender como você interage com nosso site e melhorar sua experiência (análises e publicidade).
-        </div>
-        <div class="flex gap-3 w-full md:w-auto flex-shrink-0">
-            <button id="btn-reject-cookies" class="flex-1 md:flex-none px-6 py-2 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 transition-colors">Recusar</button>
-            <button id="btn-accept-cookies" class="flex-1 md:flex-none px-6 py-2 bg-brand-yellow text-white font-bold rounded-lg hover:bg-brand-yellow-hover transition-colors">Aceitar</button>
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-label="Aviso de cookies" hidden="">
+        <p class="cookie-text">
+            Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa
+            <a href="politica-de-privacidade.html">Política de Privacidade</a>
+            para entender como você interage com nosso site e melhorar sua experiência (análises e publicidade).
+        </p>
+        <div class="cookie-actions">
+            <button id="btn-reject-cookies" class="btn-outline">Recusar</button>
+            <button id="btn-accept-cookies" class="btn-accept">Aceitar</button>
         </div>
     </div>
 
     <script>
         function hideCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
-            setTimeout(() => banner.classList.add('hidden'), 300);
+            var banner = document.getElementById('cookie-banner');
+            banner.classList.remove('visible');
+            setTimeout(function() { banner.hidden = true; }, 300);
         }
-
         function showCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.remove('hidden');
-            // Timeout to allow display:block to apply before animating
-            setTimeout(() => banner.classList.remove('translate-y-full'), 10);
+            var banner = document.getElementById('cookie-banner');
+            banner.hidden = false;
+            requestAnimationFrame(function() { banner.classList.add('visible'); });
         }
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const consent = localStorage.getItem('cookie_consent');
-            if (!consent) {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookie_consent')) {
                 showCookieBanner();
             }
-
-            document.getElementById('btn-accept-cookies').addEventListener('click', () => {
+            document.getElementById('btn-accept-cookies').addEventListener('click', function() {
                 localStorage.setItem('cookie_consent', 'granted');
                 gtag('consent', 'update', {
                     'analytics_storage': 'granted',
@@ -951,14 +1690,13 @@
                 });
                 hideCookieBanner();
             });
-
-            document.getElementById('btn-reject-cookies').addEventListener('click', () => {
+            document.getElementById('btn-reject-cookies').addEventListener('click', function() {
                 localStorage.setItem('cookie_consent', 'denied');
-                // The default is already denied, so we just hide the banner
                 hideCookieBanner();
             });
         });
     </script>
 
-</body>
-</html>
+
+
+</body></html>

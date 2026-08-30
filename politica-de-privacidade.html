@@ -1,37 +1,35 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
+<!DOCTYPE html><html lang="pt-BR"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Básico -->
     <title>Política de Privacidade | Guincho e Baterias 24 Horas em Colatina</title>
     <meta name="description" content="Leia nossa Política de Privacidade. Saiba como coletamos e protegemos seus dados de navegação.">
     <meta name="robots" content="index, follow">
     
     <!-- Favicon -->
-    <link rel="icon" href="./assets/images/logo.png" type="image/png">
+    <link rel="icon" href="./assets/images/logo-hero.webp" type="image/webp">
     
-    <!-- Open Graph Básico (Sem Domínio) -->
+    <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Política de Privacidade | Guincho e Baterias 24 Horas em Colatina">
     <meta property="og:description" content="Leia nossa Política de Privacidade.">
     <meta property="og:locale" content="pt_BR">
+
+    <!-- Preconnect -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="">
     
-    <!-- Google Consent Mode v2 (Deve vir antes do GTM) -->
+    <!-- Google Consent Mode v2 -->
     <script>
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
-        
-        // Define o consentimento padrão (negado) antes de disparar as tags
         gtag('consent', 'default', {
             'analytics_storage': 'denied',
             'ad_storage': 'denied',
             'ad_user_data': 'denied',
             'ad_personalization': 'denied'
         });
-
-        // Verifica se o usuário já salvou uma preferência no localStorage
         if(localStorage.getItem('cookie_consent') === 'granted') {
             gtag('consent', 'update', {
                 'analytics_storage': 'granted',
@@ -50,116 +48,224 @@
     })(window,document,'script','dataLayer','GTM-PB969BJJ');</script>
     <!-- End Google Tag Manager -->
 
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'brand-yellow': '#D32F2F',
-                        'brand-yellow-hover': '#b71c1c',
-                        'brand-dark': '#0f172a',
-                        'brand-darker': '#111111',
-                        'brand-gray': '#f8fafc',
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    }
-                }
-            }
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+
+    <!-- Font Awesome (não bloqueante) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+
+    <style>
+        :root {
+            --brand-red: #D32F2F;
+            --brand-red-hover: #b71c1c;
+            --brand-dark: #0f172a;
+            --brand-darker: #111111;
+            --brand-gray: #f8fafc;
         }
-    </script>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #1e293b;
+            background: var(--brand-gray);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        a { text-decoration: none; color: inherit; }
+        button { cursor: pointer; font-family: inherit; border: none; background: none; }
+        :focus-visible { outline: 3px solid var(--brand-red); outline-offset: 2px; border-radius: 4px; }
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+        }
+
+        /* Navbar */
+        .navbar {
+            width: 100%; background: #fff; padding: 1rem 1.5rem;
+            display: flex; justify-content: space-between; align-items: center;
+            position: sticky; top: 0; z-index: 50; border-bottom: 1px solid #f1f5f9;
+        }
+        .navbar-logo img { height: 3.5rem; width: auto; }
+        .navbar-links { display: none; align-items: center; gap: 2rem; font-size: .875rem; font-weight: 500; }
+        .navbar-links a:hover { color: var(--brand-red); transition: color .2s; }
+        .navbar-phone { display: none; align-items: center; gap: .75rem; transition: color .2s; }
+        .navbar-phone:hover { color: var(--brand-red); }
+        .navbar-phone .phone-label { font-size: .625rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+        .navbar-phone .phone-number { font-weight: 700; color: var(--brand-darker); }
+        .navbar-phone i { color: var(--brand-red); font-size: 1.25rem; }
+        .mobile-menu-btn {
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; color: var(--brand-darker);
+            padding: .5rem; min-width: 44px; min-height: 44px;
+        }
+        @media (min-width: 768px) {
+            .navbar { padding: 1rem 3rem; }
+            .navbar-links { display: flex; }
+            .navbar-phone { display: flex; }
+            .mobile-menu-btn { display: none; }
+        }
+        @media (min-width: 1024px) { .navbar { padding: 1rem 6rem; } }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed; inset: 0; background: #fff; z-index: 100;
+            transform: translateX(100%); transition: transform .3s ease;
+            display: flex; flex-direction: column; padding: 5rem 1.5rem 2rem;
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .mobile-menu-close {
+            position: absolute; top: 1.5rem; right: 1.5rem;
+            font-size: 1.875rem; color: var(--brand-darker);
+            min-width: 44px; min-height: 44px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .mobile-menu-nav { display: flex; flex-direction: column; font-size: 1.25rem; font-weight: 700; margin-top: 2.5rem; }
+        .mobile-menu-nav a { padding: 1rem 0; border-bottom: 1px solid #f1f5f9; transition: color .2s; }
+        .mobile-menu-nav a:hover { color: var(--brand-red); }
+        .mobile-menu-phone { margin-top: 2rem; display: flex; align-items: center; gap: 1rem; background: var(--brand-gray); padding: 1rem; border-radius: .75rem; }
+        .mobile-menu-phone i { color: var(--brand-red); font-size: 1.5rem; }
+        .mobile-menu-phone .phone-label { font-size: .75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: .05em; }
+        .mobile-menu-phone .phone-number { font-weight: 700; color: var(--brand-darker); font-size: 1.125rem; }
+
+        /* Main content */
+        main { flex-grow: 1; padding: 4rem 1.5rem; }
+        @media (min-width: 768px) { main { padding: 4rem 3rem; } }
+        @media (min-width: 1024px) { main { padding: 4rem 6rem; } }
+        .content-card {
+            max-width: 56rem; margin: 0 auto;
+            background: #fff; border-radius: 1rem;
+            box-shadow: 0 1px 3px rgba(0,0,0,.06);
+            padding: 2rem; border: 1px solid #f1f5f9;
+        }
+        @media (min-width: 768px) { .content-card { padding: 3rem; } }
+        .content-card h1 { font-size: clamp(1.5rem, 4vw, 2.25rem); font-weight: 700; color: var(--brand-darker); margin-bottom: 2rem; }
+        .content-card h2 { font-size: 1.125rem; font-weight: 700; color: var(--brand-darker); margin-top: 2rem; margin-bottom: 1rem; }
+        .content-card p { color: #4b5563; margin-bottom: 1rem; }
+        .content-card ul { color: #4b5563; padding-left: 1.5rem; margin-bottom: 1rem; }
+        .content-card ul li { margin-bottom: .5rem; }
+        .content-card strong { color: var(--brand-darker); }
+        .content-card em { font-size: .875rem; color: #6b7280; }
+
+        /* Footer */
+        .footer { background: var(--brand-darker); color: #fff; padding: 4rem 1.5rem 2rem; }
+        @media (min-width: 768px) { .footer { padding: 4rem 3rem 2rem; } }
+        @media (min-width: 1024px) { .footer { padding: 4rem 6rem 2rem; } }
+        .footer-inner {
+            max-width: 1280px; margin: 0 auto;
+            display: flex; flex-direction: column; gap: 2.5rem;
+            border-bottom: 1px solid rgba(255,255,255,.1);
+            padding-bottom: 3rem; margin-bottom: 2rem;
+        }
+        @media (min-width: 768px) { .footer-inner { flex-direction: row; justify-content: space-between; align-items: flex-start; } }
+        .footer-logo img { height: 6rem; width: auto; }
+        .footer-tagline { font-size: .875rem; color: #9ca3af; max-width: 18rem; }
+        .footer-nav { display: flex; flex-direction: column; gap: .75rem; font-size: .875rem; font-weight: 500; }
+        .footer-nav a:hover { color: var(--brand-red); transition: color .2s; }
+        .footer-nav button { text-align: left; font-size: .875rem; font-weight: 500; color: inherit; }
+        .footer-nav button:hover { color: var(--brand-red); transition: color .2s; }
+        .footer-copy { font-size: .75rem; color: #4b5563; }
+
+        /* Cookie Banner */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; width: 100%;
+            background: #fff; border-top: 1px solid #e5e7eb;
+            box-shadow: 0 -4px 30px rgba(0,0,0,.08);
+            z-index: 100; transform: translateY(100%); transition: transform .3s ease;
+            display: flex; flex-direction: column; align-items: flex-start; gap: 1rem;
+            padding: 1rem 1.5rem;
+        }
+        .cookie-banner.visible { transform: translateY(0); }
+        @media (min-width: 768px) { .cookie-banner { flex-direction: row; align-items: center; justify-content: space-between; padding: 1rem 3rem; } }
+        @media (min-width: 1024px) { .cookie-banner { padding: 1rem 6rem; } }
+        .cookie-text { font-size: .875rem; color: #374151; }
+        .cookie-text a { color: var(--brand-red); font-weight: 700; }
+        .cookie-text a:hover { text-decoration: underline; }
+        .cookie-actions { display: flex; gap: .75rem; flex-shrink: 0; width: 100%; }
+        @media (min-width: 768px) { .cookie-actions { width: auto; } }
+        .btn-outline { flex: 1; padding: .5rem 1.5rem; border: 1px solid #d1d5db; color: #374151; font-weight: 700; border-radius: .5rem; transition: background .2s; min-height: 44px; }
+        .btn-outline:hover { background: #f3f4f6; }
+        .btn-accept { flex: 1; padding: .5rem 1.5rem; background: var(--brand-red); color: #fff; font-weight: 700; border-radius: .5rem; transition: background .2s; min-height: 44px; }
+        .btn-accept:hover { background: var(--brand-red-hover); }
+        @media (min-width: 768px) { .btn-outline, .btn-accept { flex: none; } }
+    </style>
 </head>
-<body class="font-sans text-slate-800 bg-brand-gray flex flex-col min-h-screen">
-    
+<body>
     <!-- Google Tag Manager (noscript) -->
     <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PB969BJJ"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    height="0" width="0" style="display:none;visibility:hidden" title="Google Tag Manager"></iframe></noscript>
     <!-- End Google Tag Manager (noscript) -->
 
     <!-- Navbar -->
-    <nav class="w-full bg-white py-4 px-6 md:px-12 flex justify-between items-center sticky top-0 z-50 border-b border-gray-100">
-        <div class="flex items-center gap-3">
-            <a href="index.html">
-                <img src="./assets/images/logo-hero.png" alt="027 Assistência 24HS" class="h-14 w-auto">
+    <nav class="navbar" role="navigation" aria-label="Menu principal">
+        <div class="navbar-logo">
+            <a href="index.html" aria-label="027 Assistência 24HS — Página inicial">
+                <img src="./assets/images/logo-hero.webp?v=2" alt="027 Assistência 24HS" width="480" height="480" fetchpriority="high">
             </a>
         </div>
-        
-        <div class="hidden md:flex items-center gap-8 text-sm font-medium">
-            <a href="index.html#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
-            <a href="index.html#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
-            <a href="index.html#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
+        <div class="navbar-links">
+            <a href="index.html#servicos">Serviços</a>
+            <a href="index.html#como-funciona">Como funciona</a>
+            <a href="index.html#area">Área de atendimento</a>
         </div>
-
-        <a href="tel:+5527999825891" class="hidden md:flex items-center gap-3 hover:text-brand-yellow transition-colors">
-            <i class="fa-solid fa-phone text-brand-yellow text-xl"></i>
+        <a href="tel:+5527999825891" class="navbar-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
-                <p class="text-[10px] text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
-                <p class="font-bold text-brand-darker">(27) 99982-5891</p>
+                <p class="phone-label">Ligue Agora</p>
+                <p class="phone-number">(27) 99982-5891</p>
             </div>
         </a>
-        
-        <button id="mobile-menu-btn" class="md:hidden text-2xl text-brand-darker cursor-pointer">
-            <i class="fa-solid fa-bars"></i>
+        <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+            <i class="fa-solid fa-bars" aria-hidden="true"></i>
         </button>
     </nav>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[100] transform translate-x-full transition-transform duration-300 flex flex-col pt-20 px-6 hidden">
-        <button id="mobile-menu-close" class="absolute top-6 right-6 text-3xl text-brand-darker">
-            <i class="fa-solid fa-xmark"></i>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação" hidden="">
+        <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Fechar menu">
+            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
         </button>
-        <div class="flex flex-col gap-6 text-xl font-bold mt-10">
-            <a href="index.html#servicos" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Serviços</a>
-            <a href="index.html#como-funciona" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Como funciona</a>
-            <a href="index.html#area" class="mobile-link hover:text-brand-yellow transition-colors border-b border-gray-100 pb-4">Área de atendimento</a>
-        </div>
-        <a href="tel:+5527999825891" class="mt-8 flex items-center gap-4 bg-brand-gray p-4 rounded-xl">
-            <i class="fa-solid fa-phone text-brand-yellow text-2xl"></i>
+        <nav class="mobile-menu-nav" aria-label="Links de navegação">
+            <a href="index.html#servicos" class="mobile-link">Serviços</a>
+            <a href="index.html#como-funciona" class="mobile-link">Como funciona</a>
+            <a href="index.html#area" class="mobile-link">Área de atendimento</a>
+        </nav>
+        <a href="tel:+5527999825891" class="mobile-menu-phone">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
-                <p class="text-xs text-gray-500 font-bold uppercase tracking-wider">Ligue Agora</p>
-                <p class="font-bold text-brand-darker text-lg">(27) 99982-5891</p>
+                <p class="phone-label">Ligue Agora</p>
+                <p class="phone-number">(27) 99982-5891</p>
             </div>
         </a>
     </div>
 
     <script>
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenuClose = document.getElementById('mobile-menu-close');
-        const mobileMenu = document.getElementById('mobile-menu');
-        const mobileLinks = document.querySelectorAll('.mobile-link');
-
-        function openMenu() {
-            mobileMenu.classList.remove('hidden');
-            setTimeout(() => mobileMenu.classList.remove('translate-x-full'), 10);
-            document.body.style.overflow = 'hidden';
-        }
-
-        function closeMenu() {
-            mobileMenu.classList.add('translate-x-full');
-            setTimeout(() => mobileMenu.classList.add('hidden'), 300);
-            document.body.style.overflow = '';
-        }
-
-        mobileMenuBtn.addEventListener('click', openMenu);
-        mobileMenuClose.addEventListener('click', closeMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+        (function() {
+            var btn = document.getElementById('mobile-menu-btn');
+            var closeBtn = document.getElementById('mobile-menu-close');
+            var menu = document.getElementById('mobile-menu');
+            var links = document.querySelectorAll('.mobile-link');
+            function openMenu() { menu.hidden = false; requestAnimationFrame(function(){ menu.classList.add('open'); }); document.body.style.overflow = 'hidden'; btn.setAttribute('aria-expanded','true'); }
+            function closeMenu() { menu.classList.remove('open'); setTimeout(function(){ menu.hidden = true; }, 300); document.body.style.overflow = ''; btn.setAttribute('aria-expanded','false'); }
+            btn.addEventListener('click', openMenu);
+            closeBtn.addEventListener('click', closeMenu);
+            links.forEach(function(l){ l.addEventListener('click', closeMenu); });
+        })();
     </script>
 
-
     <!-- Main Content -->
-    <main class="flex-grow py-16 px-6 md:px-12 lg:px-24">
-        <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-8 md:p-12 border border-gray-100">
-            <h1 class="text-3xl md:text-4xl font-bold text-brand-darker mb-8">Política de Privacidade</h1>
+    <main id="conteudo-principal">
+        <div class="content-card">
+            <h1>Política de Privacidade</h1>
             
-            <div class="prose prose-slate max-w-none space-y-6 text-gray-600">
+            <div>
                 <p>
-                    A sua privacidade é importante para nós. Esta Política de Privacidade explica como a <strong>[NOME DA EMPRESA]</strong>, doravante referida apenas como "nós", coleta, usa e protege as suas informações quando você acessa o nosso site e utiliza os nossos serviços.
+                    A sua privacidade é importante para nós. Esta Política de Privacidade explica como a <strong>027 Assistência 24HS</strong>, doravante referida apenas como "nós", coleta, usa e protege as suas informações quando você acessa o nosso site e utiliza os nossos serviços.
                 </p>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">1. Coleta de Informações de Navegação e Uso de Cookies</h2>
+                <h2>1. Coleta de Informações de Navegação e Uso de Cookies</h2>
                 <p>
                     Ao navegar em nosso site, podemos coletar automaticamente informações não pessoais sobre o seu dispositivo e sobre a sua interação com o nosso conteúdo. Essa coleta é realizada através de cookies e tecnologias de rastreamento semelhantes gerenciadas pelo <strong>Google Tag Manager</strong>.
                 </p>
@@ -167,7 +273,7 @@
                     As informações coletadas podem incluir o seu endereço de IP, tipo de navegador, páginas visitadas, tempo gasto no site e cliques. Estas informações são utilizadas para fins analíticos e de publicidade (como Google Analytics e Google Ads), permitindo-nos mensurar acessos, entender o comportamento dos usuários, melhorar nossos serviços e exibir campanhas de anúncios mais relevantes.
                 </p>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">2. Gerenciamento e Consentimento de Cookies</h2>
+                <h2>2. Gerenciamento e Consentimento de Cookies</h2>
                 <p>
                     Nós respeitamos as suas escolhas. No momento do seu primeiro acesso, apresentamos um Banner de Cookies para que você possa escolher aceitar ou recusar a utilização de cookies para finalidades de análise e publicidade. 
                 </p>
@@ -175,118 +281,98 @@
                     O seu consentimento (ou recusa) é armazenado localmente em seu navegador de forma a evitar que o banner reapareça continuamente. Você pode alterar essa escolha a qualquer momento clicando no link "Configurações de cookies", localizado no rodapé de nosso site.
                 </p>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">3. Direcionamento para Plataformas Externas</h2>
+                <h2>3. Direcionamento para Plataformas Externas</h2>
                 <p>
                     Para solicitar nossos serviços, o nosso site fornece botões e links que o direcionam para o aplicativo <strong>WhatsApp</strong>. É importante salientar que o WhatsApp é uma plataforma externa e possui a sua própria Política de Privacidade e Termos de Uso. Nós não nos responsabilizamos pela forma como o WhatsApp processa ou armazena os seus dados.
                 </p>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">4. Compartilhamento de Informações</h2>
+                <h2>4. Compartilhamento de Informações</h2>
                 <p>
                     As informações de navegação coletadas através dos nossos cookies analíticos e de publicidade são compartilhadas com provedores de tecnologia (ex: Google) exclusivamente para fornecer as métricas e ferramentas de marketing mencionadas anteriormente. Nós não vendemos, alugamos ou comercializamos as suas informações pessoais com terceiros para outros fins.
                 </p>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">5. Seus Direitos</h2>
-                <p>
-                    De acordo com a legislação de proteção de dados, você tem o direito de:
-                </p>
-                <ul class="list-disc pl-6 space-y-2">
+                <h2>5. Seus Direitos</h2>
+                <p>De acordo com a legislação de proteção de dados, você tem o direito de:</p>
+                <ul>
                     <li>Saber quais dados estão sendo coletados e por quê.</li>
                     <li>Revogar ou conceder o seu consentimento para a utilização de cookies a qualquer momento.</li>
                 </ul>
 
-                <h2 class="text-xl font-bold text-brand-darker mt-8 mb-4">6. Contato</h2>
+                <h2>6. Contato</h2>
                 <p>
                     Se você tiver alguma dúvida sobre esta Política de Privacidade ou sobre as nossas práticas relacionadas a dados, entre em contato conosco pelos seguintes meios:
                 </p>
-                <ul class="list-disc pl-6 space-y-2">
+                <ul>
                     <li><strong>Telefone/WhatsApp:</strong> (27) 99982-5891</li>
                     <li><strong>E-mail:</strong> [SEU EMAIL AQUI]</li>
                     <li><strong>CNPJ:</strong> [SEU CNPJ AQUI]</li>
                     <li><strong>Endereço Sede:</strong> [SEU ENDEREÇO AQUI], Colatina - ES</li>
                 </ul>
 
-                <p class="mt-8 text-sm italic">Última atualização: Agosto de 2024</p>
+                <p style="margin-top:2rem"><em>Última atualização: Agosto de 2024</em></p>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-brand-darker text-white pt-16 pb-8 px-6 md:px-12 lg:px-24 mt-auto">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-start gap-10 border-b border-white/10 pb-12 mb-8">
-            <div class="flex items-center gap-3">
-                <a href="index.html">
-                    <img src="./assets/images/logo-transparente.png" alt="027 Assistência 24HS" class="h-24 w-auto">
+    <footer class="footer" role="contentinfo">
+        <div class="footer-inner">
+            <div class="footer-logo">
+                <a href="index.html" aria-label="027 Assistência 24HS — Página inicial">
+                    <img src="./assets/images/logo-transparente.webp?v=2" alt="027 Assistência 24HS" width="480" height="480" loading="lazy">
                 </a>
             </div>
-
-            <div class="text-sm text-gray-400 max-w-xs">
-                Guincho e baterias automotivas. 24 horas em Colatina e região.
-            </div>
-
-            <div class="flex flex-col gap-3 text-sm font-medium">
-                <a href="index.html#servicos" class="hover:text-brand-yellow transition-colors">Serviços</a>
-                <a href="index.html#como-funciona" class="hover:text-brand-yellow transition-colors">Como funciona</a>
-                <a href="index.html#area" class="hover:text-brand-yellow transition-colors">Área de atendimento</a>
-            </div>
-            
-            <div class="flex flex-col gap-3 text-sm font-medium">
-                <a href="politica-de-privacidade.html" class="hover:text-brand-yellow transition-colors">Política de Privacidade</a>
-                <button type="button" onclick="showCookieBanner()" class="text-left hover:text-brand-yellow transition-colors">Configurações de cookies</button>
-            </div>
-            
-            <div class="text-xs text-gray-600">
-                &copy; 2024 Assistência Automotiva 24h.
-            </div>
+            <p class="footer-tagline">Guincho e baterias automotivas. 24 horas em Colatina e região.</p>
+            <nav class="footer-nav" aria-label="Links do rodapé">
+                <a href="index.html#servicos">Serviços</a>
+                <a href="index.html#como-funciona">Como funciona</a>
+                <a href="index.html#area">Área de atendimento</a>
+            </nav>
+            <nav class="footer-nav" aria-label="Links legais">
+                <a href="politica-de-privacidade.html">Política de Privacidade</a>
+                <button type="button" onclick="showCookieBanner()">Configurações de cookies</button>
+            </nav>
+            <p class="footer-copy">© 2024 Assistência Automotiva 24h.</p>
         </div>
     </footer>
 
     <!-- Cookie Banner -->
-    <div id="cookie-banner" class="fixed bottom-0 left-0 w-full bg-white border-t border-gray-200 shadow-2xl z-[100] transform translate-y-full transition-transform duration-300 flex flex-col md:flex-row items-center justify-between p-4 md:px-12 lg:px-24 gap-4 hidden">
-        <div class="text-sm text-gray-700">
-            Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa <a href="politica-de-privacidade.html" class="text-brand-yellow font-bold hover:underline">Política de Privacidade</a> para entender como você interage com nosso site e melhorar sua experiência (análises e publicidade).
-        </div>
-        <div class="flex gap-3 w-full md:w-auto flex-shrink-0">
-            <button id="btn-reject-cookies" class="flex-1 md:flex-none px-6 py-2 border border-gray-300 text-gray-700 font-bold rounded-lg hover:bg-gray-100 transition-colors">Recusar</button>
-            <button id="btn-accept-cookies" class="flex-1 md:flex-none px-6 py-2 bg-brand-yellow text-white font-bold rounded-lg hover:bg-brand-yellow-hover transition-colors">Aceitar</button>
+    <div id="cookie-banner" class="cookie-banner" role="dialog" aria-modal="true" aria-label="Aviso de cookies" hidden="">
+        <p class="cookie-text">
+            Utilizamos cookies essenciais e tecnologias semelhantes de acordo com a nossa
+            <a href="politica-de-privacidade.html">Política de Privacidade</a>
+            para entender como você interage com nosso site e melhorar sua experiência (análises e publicidade).
+        </p>
+        <div class="cookie-actions">
+            <button id="btn-reject-cookies" class="btn-outline">Recusar</button>
+            <button id="btn-accept-cookies" class="btn-accept">Aceitar</button>
         </div>
     </div>
 
     <script>
         function hideCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.add('translate-y-full');
-            setTimeout(() => banner.classList.add('hidden'), 300);
+            var banner = document.getElementById('cookie-banner');
+            banner.classList.remove('visible');
+            setTimeout(function(){ banner.hidden = true; }, 300);
         }
-
         function showCookieBanner() {
-            const banner = document.getElementById('cookie-banner');
-            banner.classList.remove('hidden');
-            // Timeout to allow display:block to apply before animating
-            setTimeout(() => banner.classList.remove('translate-y-full'), 10);
+            var banner = document.getElementById('cookie-banner');
+            banner.hidden = false;
+            requestAnimationFrame(function(){ banner.classList.add('visible'); });
         }
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const consent = localStorage.getItem('cookie_consent');
-            if (!consent) {
-                showCookieBanner();
-            }
-
-            document.getElementById('btn-accept-cookies').addEventListener('click', () => {
+        document.addEventListener('DOMContentLoaded', function() {
+            if (!localStorage.getItem('cookie_consent')) showCookieBanner();
+            document.getElementById('btn-accept-cookies').addEventListener('click', function() {
                 localStorage.setItem('cookie_consent', 'granted');
-                gtag('consent', 'update', {
-                    'analytics_storage': 'granted',
-                    'ad_storage': 'granted',
-                    'ad_user_data': 'granted',
-                    'ad_personalization': 'granted'
-                });
+                gtag('consent', 'update', { 'analytics_storage': 'granted', 'ad_storage': 'granted', 'ad_user_data': 'granted', 'ad_personalization': 'granted' });
                 hideCookieBanner();
             });
-
-            document.getElementById('btn-reject-cookies').addEventListener('click', () => {
+            document.getElementById('btn-reject-cookies').addEventListener('click', function() {
                 localStorage.setItem('cookie_consent', 'denied');
                 hideCookieBanner();
             });
         });
     </script>
-</body>
-</html>
+
+
+</body></html>
