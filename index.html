@@ -15,11 +15,10 @@
     <meta property="og:title" content="Guincho e Baterias 24 Horas em Colatina">
     <meta property="og:description" content="Atendimento rápido para guincho, pane e troca de bateria em Colatina.">
     <meta property="og:locale" content="pt_BR">
-    <link rel="preload" as="image" href="./assets/images/hero-bg.webp?v=2">
+    <link rel="preload" as="image" href="./assets/images/hero-bg.webp?v=2" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="./assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Preconnect para recursos externos críticos -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="">
 
     <!-- Google Consent Mode v2 (Deve vir antes do GTM) -->
@@ -50,8 +49,7 @@
     })(window,document,'script','dataLayer','GTM-PB969BJJ');</script>
     <!-- End Google Tag Manager -->
 
-    <!-- Google Fonts: apenas pesos usados, display swap -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&amp;display=swap" rel="stylesheet">
+    <!-- Inter: hospedada localmente, font-display: swap (substitui Google Fonts) -->
 
     <!-- Font Awesome: apenas ícones usados via kit CDN com display swap -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -59,6 +57,43 @@
 
     <!-- CSS customizado (substitui Tailwind CDN) -->
     <style>
+        /* ========================
+           FONTES LOCAIS
+        ======================== */
+        /* Inter — variável Latin, pesos 100–900, sem itálico */
+        @font-face {
+            font-family: 'Inter';
+            src: url('./assets/fonts/inter-variable.woff2') format('woff2');
+            font-style: normal;
+            font-weight: 100 900;
+            font-display: swap;
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+        }
+
+        /* Font Awesome 6.4.0 — @font-face locais com font-display: swap */
+        /* O CSS de classes (.fa-solid, .fa-regular, .fa-brands) continua vindo do CDN (não-bloqueante) */
+        @font-face {
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 900;
+            font-display: swap;
+            src: url('./assets/fonts/fa-solid-900.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Font Awesome 6 Free';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('./assets/fonts/fa-regular-400.woff2') format('woff2');
+        }
+        @font-face {
+            font-family: 'Font Awesome 6 Brands';
+            font-style: normal;
+            font-weight: 400;
+            font-display: swap;
+            src: url('./assets/fonts/fa-brands-400.woff2') format('woff2');
+        }
+
         /* ========================
            DESIGN TOKENS
         ======================== */
