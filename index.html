@@ -19,7 +19,6 @@
     <link rel="preload" href="./assets/fonts/inter-variable.woff2" as="font" type="font/woff2" crossorigin>
     
     <!-- Preconnect para recursos externos críticos -->
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin="">
 
     <!-- Google Consent Mode v2 (Deve vir antes do GTM) -->
     <script>
@@ -50,10 +49,7 @@
     <!-- End Google Tag Manager -->
 
     <!-- Inter: hospedada localmente, font-display: swap (substitui Google Fonts) -->
-
-    <!-- Font Awesome: apenas ícones usados via kit CDN com display swap -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
+    <!-- Font Awesome substituído por SVGs inline — sem dependência de CDN -->
 
     <!-- CSS customizado (substitui Tailwind CDN) -->
     <style>
@@ -70,29 +66,6 @@
             unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
         }
 
-        /* Font Awesome 6.4.0 — @font-face locais com font-display: swap */
-        /* O CSS de classes (.fa-solid, .fa-regular, .fa-brands) continua vindo do CDN (não-bloqueante) */
-        @font-face {
-            font-family: 'Font Awesome 6 Free';
-            font-style: normal;
-            font-weight: 900;
-            font-display: swap;
-            src: url('./assets/fonts/fa-solid-900.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'Font Awesome 6 Free';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('./assets/fonts/fa-regular-400.woff2') format('woff2');
-        }
-        @font-face {
-            font-family: 'Font Awesome 6 Brands';
-            font-style: normal;
-            font-weight: 400;
-            font-display: swap;
-            src: url('./assets/fonts/fa-brands-400.woff2') format('woff2');
-        }
 
         /* ========================
            DESIGN TOKENS
@@ -200,7 +173,7 @@
         .navbar-phone:hover { color: var(--brand-red); }
         .navbar-phone .phone-label { font-size: 0.625rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
         .navbar-phone .phone-number { font-weight: 700; color: var(--brand-darker); font-size: 1rem; }
-        .navbar-phone i { color: var(--brand-red); font-size: 1.25rem; }
+        .navbar-phone svg { color: var(--brand-red); width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
         .mobile-menu-btn {
             display: flex;
             align-items: center;
@@ -271,7 +244,7 @@
             padding: 1rem;
             border-radius: 0.75rem;
         }
-        .mobile-menu-phone i { color: var(--brand-red); font-size: 1.5rem; }
+        .mobile-menu-phone svg { color: var(--brand-red); width: 1.5rem; height: 1.5rem; flex-shrink: 0; }
         .mobile-menu-phone .phone-label { font-size: 0.75rem; color: #6b7280; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
         .mobile-menu-phone .phone-number { font-weight: 700; color: var(--brand-darker); font-size: 1.125rem; }
 
@@ -376,7 +349,7 @@
             color: #d1d5db;
         }
         .hero-features div { display: flex; align-items: center; gap: 0.5rem; }
-        .hero-features i { color: var(--brand-red); }
+        .hero-features svg { color: var(--brand-red); width: 1em; height: 1em; }
         @media (min-width: 640px) {
             .hero-ctas { flex-direction: row; }
         }
@@ -575,7 +548,7 @@
         .service-card-list { list-style: none; display: flex; flex-direction: column; gap: 1rem; margin-bottom: 3rem; flex-grow: 1; }
         .service-card-list li { display: flex; align-items: center; gap: 0.75rem; font-size: 0.875rem; font-weight: 600; color: var(--brand-darker); }
         .service-card-list-light li { color: var(--white); }
-        .service-card-list i { color: var(--brand-red); }
+        .service-card-list svg { color: var(--brand-red); width: 1em; height: 1em; flex-shrink: 0; }
         .service-link {
             display: inline-flex;
             align-items: center;
@@ -660,7 +633,7 @@
             margin-bottom: 1.5rem;
         }
         .rating-logo { width: 2.5rem; height: 2.5rem; border-radius: 0.5rem; background: #f8fafc; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .rating-stars { display: flex; color: #f59e0b; font-size: 0.625rem; }
+        .rating-stars { display: flex; color: #f59e0b; font-size: 0.625rem; gap: 1px; }
         .rating-info { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 0.25rem; }
         .rating-score { font-weight: 700; color: var(--brand-darker); font-size: 0.875rem; }
         .rating-count { font-size: 0.75rem; color: #6b7280; font-weight: 600; }
@@ -671,7 +644,7 @@
             border-radius: 0.75rem; border: 1px solid #f1f5f9;
             margin-bottom: 1.5rem;
         }
-        .location-note i { color: var(--brand-red); font-size: 1.25rem; margin-top: 0.25rem; }
+        .location-note svg { color: var(--brand-red); width: 1.25rem; height: 1.25rem; margin-top: 0.25rem; flex-shrink: 0; }
         .location-note strong { font-size: 0.875rem; font-weight: 700; color: var(--brand-darker); display: block; margin-bottom: 0.25rem; }
         .location-note p { font-size: 0.875rem; color: #6b7280; }
         .btn-dark {
@@ -751,8 +724,8 @@
         .review-badge-new { background: #374151; color: var(--white); font-size: 0.5rem; font-weight: 700; padding: 0.125rem 0.375rem; border-radius: 0.25rem; text-transform: uppercase; margin-left: 0.25rem; vertical-align: middle; }
         .review-badge-guide { color: var(--brand-red); font-weight: 600; font-size: 0.5rem; display: block; margin-top: 0.125rem; }
         .review-stars { display: flex; align-items: center; gap: 0.375rem; margin-bottom: 1rem; justify-content: center; }
-        .review-stars-inner { display: flex; color: #f59e0b; font-size: 0.625rem; }
-        .review-stars .check-icon { color: #3b82f6; font-size: 0.625rem; }
+        .review-stars-inner { display: flex; color: #f59e0b; font-size: 0.625rem; gap: 1px; }
+        .review-stars .check-icon { color: #3b82f6; width: 0.75rem; height: 0.75rem; }
         .review-text { font-size: 0.75rem; color: #d1d5db; line-height: 1.6; font-weight: 300; }
 
         /* ========================
@@ -764,7 +737,7 @@
 
         .why-card { border: 1px solid #f1f5f9; border-radius: 0.75rem; padding: 2rem; text-align: left; transition: box-shadow .2s; }
         .why-card:hover { box-shadow: 0 8px 30px rgba(0,0,0,.08); }
-        .why-card i { font-size: 1.5rem; color: var(--brand-red); display: block; margin-bottom: 1.5rem; }
+        .why-card svg { width: 1.5rem; height: 1.5rem; color: var(--brand-red); display: block; margin-bottom: 1.5rem; }
         .why-card h3 { font-weight: 700; color: var(--brand-darker); margin-bottom: 0.75rem; font-size: 1rem; }
         .why-card p { font-size: 0.875rem; color: #4b5563; }
 
@@ -811,7 +784,7 @@
         .btn-darker:hover { background: #000; color: var(--white); }
         .cta-phone-link { display: flex; align-items: center; justify-content: center; gap: 0.75rem; color: var(--brand-darker); transition: color .2s; }
         .cta-phone-link:hover { color: #000; }
-        .cta-phone-link i { flex-shrink: 0; }
+        .cta-phone-link svg { flex-shrink: 0; width: 1.25rem; height: 1.25rem; }
         .cta-phone-text .phone-line1 { font-weight: 700; font-size: 0.75rem; display: block; }
         .cta-phone-text .phone-line2 { font-weight: 700; font-size: 1rem; }
 
@@ -856,7 +829,7 @@
             min-height: 48px;
         }
         .whatsapp-float:hover { background: #20bd5a; transform: scale(1.05); color: var(--white); }
-        .whatsapp-float i { font-size: 1.5rem; }
+        .whatsapp-float svg { width: 1.5rem; height: 1.5rem; }
         .whatsapp-float span { display: none; }
         @media (min-width: 768px) { .whatsapp-float span { display: inline; } }
 
@@ -972,7 +945,7 @@
         </div>
 
         <a href="tel:+5527999825891" class="navbar-phone">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.25rem;height:1.25rem"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C11.1 30.7 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.3-11.1 38.6-27.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
             <div>
                 <p class="phone-label">Ligue Agora</p>
                 <p class="phone-number">(27) 99982-5891</p>
@@ -980,14 +953,14 @@
         </a>
         
         <button id="mobile-menu-btn" class="mobile-menu-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
-            <i class="fa-solid fa-bars" aria-hidden="true"></i>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg>
         </button>
     </nav>
 
     <!-- Mobile Menu Overlay -->
     <div id="mobile-menu" class="mobile-menu" role="dialog" aria-modal="true" aria-label="Menu de navegação" hidden="">
         <button id="mobile-menu-close" class="mobile-menu-close" aria-label="Fechar menu">
-            <i class="fa-solid fa-xmark" aria-hidden="true"></i>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" style="width:1.875rem;height:1.875rem"><path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3l105.4 105.3c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256l105.3-105.4z"/></svg>
         </button>
         <nav class="mobile-menu-nav" aria-label="Links de navegação">
             <a href="#servicos" class="mobile-link">Serviços</a>
@@ -995,7 +968,7 @@
             <a href="#area" class="mobile-link">Área de atendimento</a>
         </nav>
         <a href="tel:+5527999825891" class="mobile-menu-phone">
-            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C11.1 30.7 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.3-11.1 38.6-27.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
             <div>
                 <p class="phone-label">Ligue Agora</p>
                 <p class="phone-number">(27) 99982-5891</p>
@@ -1058,21 +1031,21 @@
             
             <div class="hero-ctas">
                 <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="btn-primary" data-cta-location="hero">
-                    <i class="fa-solid fa-truck-pickup" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" style="width:1em;height:1em"><path d="M280 32c-13.3 0-24 10.7-24 24s10.7 24 24 24h57.7l16.4 30.3L256 192H55.1C40.9 192 32 207.4 38.6 219.9L85 304H32c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c0 53 43 96 96 96s96-43 96-96H672c0-17.7-14.3-32-32-32H517.9c-17.1-25.4-45.8-42-78.6-42H384V272l79.2-40.7L512 256h96l-48-128H448L416.8 64H280zM544 384c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zM176 432a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg>
                     Preciso de um Guincho
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:1em;height:1em"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                 </a>
                 <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="btn-secondary" data-cta-location="hero">
-                    <i class="fa-solid fa-car-battery" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:1em;height:1em"><path d="M96 128H480c17.7 0 32 14.3 32 32V384H64V160c0-17.7 14.3-32 32-32zM0 160C0 107 42.1 64 96 64h80V32c0-17.7 14.3-32 32-32h160c17.7 0 32 14.3 32 32V64h80c53.0 0 96 43 96 96V384H576v64H0V384H0V160zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm256 32h32c17.7 0 32-14.3 32-32s-14.3-32-32-32H416V192c0-17.7-14.3-32-32-32s-32 14.3-32 32v32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v32c0 17.7 14.3 32 32 32s32-14.3 32-32V288z"/></svg>
                     Preciso de uma Bateria
-                    <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:1em;height:1em"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                 </a>
             </div>
             
             <div class="hero-features" aria-label="Diferenciais do serviço">
-                <div><i class="fa-regular fa-clock" aria-hidden="true"></i> Chegada rápida</div>
-                <div><i class="fa-solid fa-shield-halved" aria-hidden="true"></i> Atendimento seguro</div>
-                <div><i class="fa-solid fa-location-dot" aria-hidden="true"></i> Colatina e região</div>
+                <div><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1em;height:1em"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg> Chegada rápida</div>
+                <div><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1em;height:1em"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.7 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 218.4 432 141.4L256 66.8z"/></svg> Atendimento seguro</div>
+                <div><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512" fill="currentColor" style="width:1em;height:1em"><path d="M215.7 499.2C267 435 384 279.4 384 192C384 86 298 0 192 0S0 86 0 192c0 87.4 117 243 168.3 307.2c12.3 15.3 35.1 15.3 47.4 0zM192 128a64 64 0 1 1 0 128 64 64 0 1 1 0-128z"/></svg> Colatina e região</div>
             </div>
         </div>
     </header>
@@ -1126,10 +1099,10 @@
                             <img src="./assets/images/servico4.webp?v=2" alt="Atendimento de guincho 24 horas" width="900" height="680" loading="lazy" decoding="async">
                         </div>
                         <button id="sc-prev" class="carousel-btn carousel-btn-prev" aria-label="Foto anterior do guincho">
-                            <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
                         </button>
                         <button id="sc-next" class="carousel-btn carousel-btn-next" aria-label="Próxima foto do guincho">
-                            <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                         </button>
                         <div class="carousel-dots" role="tablist" aria-label="Selecionar foto">
                             <button class="carousel-dot active" data-index="0" role="tab" aria-label="Foto 1 do guincho" aria-selected="true"></button>
@@ -1141,7 +1114,7 @@
                     <!-- Conteúdo -->
                     <div class="service-card-body">
                         <div class="service-icon-row">
-                            <div class="service-icon"><i class="fa-solid fa-truck-pickup" aria-hidden="true"></i></div>
+                            <div class="service-icon"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" style="width:1.875rem;height:1.875rem"><path d="M280 32c-13.3 0-24 10.7-24 24s10.7 24 24 24h57.7l16.4 30.3L256 192H55.1C40.9 192 32 207.4 38.6 219.9L85 304H32c-13.3 0-24 10.7-24 24s10.7 24 24 24H448c0 53 43 96 96 96s96-43 96-96H672c0-17.7-14.3-32-32-32H517.9c-17.1-25.4-45.8-42-78.6-42H384V272l79.2-40.7L512 256h96l-48-128H448L416.8 64H280zM544 384c0 26.5-21.5 48-48 48s-48-21.5-48-48 21.5-48 48-48 48 21.5 48 48zM176 432a48 48 0 1 0 0-96 48 48 0 1 0 0 96z"/></svg></div>
                             <span class="service-number" aria-hidden="true">01</span>
                         </div>
                         <p class="service-type">Resgate e transporte</p>
@@ -1150,12 +1123,12 @@
                             Seu veículo parou, sofreu pane ou precisa ser transportado? Fazemos o resgate com agilidade e cuidado, a qualquer hora.
                         </p>
                         <ul class="service-card-list">
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Pane mecânica ou elétrica</li>
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Veículo acidentado</li>
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Transporte de carros e motos</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Pane mecânica ou elétrica</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Veículo acidentado</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Transporte de carros e motos</li>
                         </ul>
                         <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20um%20guincho%20para%20o%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="service-link" data-cta-location="servicos">
-                            Chamar um guincho <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            Chamar um guincho <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </a>
                     </div>
                 </article>
@@ -1171,10 +1144,10 @@
                             <img src="./assets/images/bateria4.webp?v=2" alt="Serviço de bateria 24 horas" width="900" height="680" loading="lazy" decoding="async">
                         </div>
                         <button id="bc-prev" class="carousel-btn carousel-btn-prev" aria-label="Foto anterior de baterias">
-                            <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
                         </button>
                         <button id="bc-next" class="carousel-btn carousel-btn-next" aria-label="Próxima foto de baterias">
-                            <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
+                            <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                         </button>
                         <div class="carousel-dots" role="tablist" aria-label="Selecionar foto">
                             <button class="carousel-dot active" data-index="0" role="tab" aria-label="Foto 1 de baterias" aria-selected="true"></button>
@@ -1186,7 +1159,7 @@
                     <!-- Conteúdo -->
                     <div class="service-card-body">
                         <div class="service-icon-row">
-                            <div class="service-icon service-icon-dark"><i class="fa-solid fa-car-battery" aria-hidden="true"></i></div>
+                            <div class="service-icon service-icon-dark"><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:1.875rem;height:1.875rem"><path d="M96 128H480c17.7 0 32 14.3 32 32V384H64V160c0-17.7 14.3-32 32-32zM0 160C0 107 42.1 64 96 64h80V32c0-17.7 14.3-32 32-32h160c17.7 0 32 14.3 32 32V64h80c53.0 0 96 43 96 96V384H576v64H0V384H0V160zM160 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0zm256 32h32c17.7 0 32-14.3 32-32s-14.3-32-32-32H416V192c0-17.7-14.3-32-32-32s-32 14.3-32 32v32H320c-17.7 0-32 14.3-32 32s14.3 32 32 32h32v32c0 17.7 14.3 32 32 32s32-14.3 32-32V288z"/></svg></div>
                             <span class="service-number service-number-dark" aria-hidden="true">02</span>
                         </div>
                         <p class="service-type service-type-accent">Troca no local</p>
@@ -1195,12 +1168,12 @@
                             A bateria não respondeu? Levamos uma bateria adequada até você e fazemos a instalação no local, com praticidade.
                         </p>
                         <ul class="service-card-list service-card-list-light">
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Carros e motocicletas</li>
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Teste do sistema de carga</li>
-                            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Instalação rápida no local</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Carros e motocicletas</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Teste do sistema de carga</li>
+                            <li><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"/></svg> Instalação rápida no local</li>
                         </ul>
                         <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20assist%C3%AAncia%20para%20bateria%20do%20meu%20ve%C3%ADculo." target="_blank" rel="noopener" class="service-link service-link-accent" data-cta-location="servicos">
-                            Pedir uma bateria <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                            Pedir uma bateria <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                         </a>
                     </div>
                 </article>
@@ -1222,7 +1195,7 @@
                         Em uma situação de emergência, tudo precisa ser simples. Por isso, resolvemos em três passos.
                     </p>
                     <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="hiw-link" data-cta-location="desconhecido">
-                        Solicitar atendimento agora <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        Solicitar atendimento agora <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                     </a>
                 </div>
 
@@ -1289,11 +1262,11 @@
                             <div class="rating-info">
                                 <span class="rating-score">5.0</span>
                                 <div class="rating-stars" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
                                 <span class="rating-count">(140+ avaliações)</span>
                             </div>
@@ -1302,7 +1275,7 @@
                     </div>
 
                     <div class="location-note">
-                        <i class="fa-solid fa-location-crosshairs" aria-hidden="true"></i>
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.25rem;height:1.25rem"><path d="M256 0c17.7 0 32 14.3 32 32V42.4c93.7 13.9 167.7 88 181.6 181.6H480c17.7 0 32 14.3 32 32s-14.3 32-32 32H469.6C455.7 381.6 381.6 455.7 288 469.6V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V469.6C130.4 455.7 56.3 381.6 42.4 288H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H42.4C56.3 130.4 130.4 56.3 224 42.4V32c0-17.7 14.3-32 32-32zM107.4 288c12.5 58.3 58.3 104.1 116.6 116.6V384c0-17.7 14.3-32 32-32s32 14.3 32 32v20.6c58.3-12.5 104.1-58.3 116.6-116.6H384c-17.7 0-32-14.3-32-32s14.3-32 32-32h20.6C392.1 165.7 346.3 119.9 288 107.4V128c0 17.7-14.3 32-32 32s-32-14.3-32-32V107.4C165.7 119.9 119.9 165.7 107.4 224H128c17.7 0 32 14.3 32 32s-14.3 32-32 32H107.4zM256 224a32 32 0 1 1 0 64 32 32 0 1 1 0-64z"/></svg>
                         <div>
                             <strong>Não sabe se atendemos sua localização?</strong>
                             <p>Envie seu local pelo WhatsApp.</p>
@@ -1310,7 +1283,7 @@
                     </div>
 
                     <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="btn-dark" data-cta-location="desconhecido">
-                        Consultar minha localização <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        Consultar minha localização <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                     </a>
                 </div>
             </div>
@@ -1328,18 +1301,18 @@
             <div class="testimonials-wrap">
                 <!-- Quote icons decorativos -->
                 <div class="quote-icon quote-icon-top" aria-hidden="true">
-                    <i class="fa-solid fa-quote-left" style="font-size:1.125rem; color:white"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white" style="width:1.125rem;height:1.125rem"><path d="M0 216C0 149.7 53.7 96 120 96h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H64c-35.3 0-64-28.7-64-64V216zm256 0c0-66.3 53.7-120 120-120h8c17.7 0 32 14.3 32 32s-14.3 32-32 32h-8c-30.9 0-56 25.1-56 56v8h64c35.3 0 64 28.7 64 64v64c0 35.3-28.7 64-64 64H320c-35.3 0-64-28.7-64-64V216z"/></svg>
                 </div>
                 <div class="quote-icon quote-icon-bottom" aria-hidden="true">
-                    <i class="fa-solid fa-quote-right" style="font-size:1.125rem; color:white"></i>
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="white" style="width:1.125rem;height:1.125rem"><path d="M448 296c0 66.3-53.7 120-120 120h-8c-17.7 0-32-14.3-32-32s14.3-32 32-32h8c30.9 0 56-25.1 56-56v-8H320c-35.3 0-64-28.7-64-64V160c0-35.3 28.7-64 64-64h64c35.3 0 64 28.7 64 64v136zm-256 0c0 66.3-53.7 120-120 120H64c-35.3 0-64-28.7-64-64V160C0 124.7 28.7 96 64 96h64c35.3 0 64 28.7 64 64v136z"/></svg>
                 </div>
                 
                 <!-- Botões de navegação -->
                 <button id="prev-review" class="review-btn review-btn-prev" aria-label="Depoimento anterior">
-                    <i class="fa-solid fa-chevron-left" aria-hidden="true" style="font-size:.875rem"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3l192 192c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256 246.6 86.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0l-192 192z"/></svg>
                 </button>
                 <button id="next-review" class="review-btn review-btn-next" aria-label="Próximo depoimento">
-                    <i class="fa-solid fa-chevron-right" aria-hidden="true" style="font-size:.875rem"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M310.6 233.4c12.5 12.5 12.5 32.8 0 45.3l-192 192c-12.5 12.5-32.8 12.5-45.3 0s-12.5-32.8 0-45.3L242.7 256 73.4 86.6c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0l192 192z"/></svg>
                 </button>
 
                 <div class="testimonials-viewport">
@@ -1357,9 +1330,9 @@
                             <span class="review-date">3 semanas atrás <span class="review-badge-new">Nova</span></span>
                             <div class="review-stars">
                                 <div class="review-stars-inner" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
-                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="check-icon" style="width:.75rem;height:.75rem"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
                             </div>
                             <p class="review-text">"Ótimo atendimento pontual profissional que trabalha com segurança. Muito Satisfeito com o serviço prestado. Recomendo 👍👍👍👍 ..."</p>
                         </article>
@@ -1376,9 +1349,9 @@
                             <span class="review-date">4 meses atrás</span>
                             <div class="review-stars">
                                 <div class="review-stars-inner" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
-                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="check-icon" style="width:.75rem;height:.75rem"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
                             </div>
                             <p class="review-text">"O prestador de serviço da seguradora de nome João, foi um ótimo profissional no serviço de substituição de uma bateria do meu carro. Gostei muito mesmo do atendimento do João, parabéns"</p>
                         </article>
@@ -1395,9 +1368,9 @@
                             <span class="review-date">4 meses atrás <span class="review-badge-guide">Local Guide</span></span>
                             <div class="review-stars">
                                 <div class="review-stars-inner" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
-                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="check-icon" style="width:.75rem;height:.75rem"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
                             </div>
                             <p class="review-text">"A equipe está de parabéns, foram ágil e pontual atendendo todos os requisitos que um assegurado necessita."</p>
                         </article>
@@ -1414,9 +1387,9 @@
                             <span class="review-date">7 meses atrás <span class="review-badge-guide">Local Guide</span></span>
                             <div class="review-stars">
                                 <div class="review-stars-inner" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
-                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="check-icon" style="width:.75rem;height:.75rem"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
                             </div>
                             <p class="review-text">"Serviço de excelência, profissional atencioso e prestativo. Fez o serviço com agilidade e muito bem feito. Além disso, me passou informações de muito valor sobre o serviço..."</p>
                         </article>
@@ -1433,9 +1406,9 @@
                             <span class="review-date">7 meses atrás</span>
                             <div class="review-stars">
                                 <div class="review-stars-inner" aria-label="5 estrelas">
-                                    <i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i><i class="fa-solid fa-star" aria-hidden="true"></i>
+                                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg><svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512" fill="currentColor" style="width:.75rem;height:.75rem"><path d="M316.9 18C311.6 7 300.4 0 288.1 0s-23.4 7-28.8 18L195 150.3 51.4 171.5c-12 1.8-22 10.2-25.7 21.7s-.7 24.2 7.9 32.7L137.8 329 113.2 474.7c-2 12 3 24.2 12.9 31.3s23 8 33.8 2.3l128.3-68.5 128.3 68.5c10.8 5.7 23.9 4.9 33.8-2.3s14.9-19.3 12.9-31.3L438.5 329 542.7 225.9c8.6-8.5 11.7-21.2 7.9-32.7s-13.7-19.9-25.7-21.7L381.2 150.3 316.9 18z"/></svg>
                                 </div>
-                                <i class="fa-solid fa-circle-check check-icon" aria-hidden="true"></i>
+                                <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" class="check-icon" style="width:.75rem;height:.75rem"><path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM369 209L241 337c-9.4 9.4-24.6 9.4-33.9 0l-64-64c-9.4-9.4-9.4-24.6 0-33.9s24.6-9.4 33.9 0l47 47L335 175c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9z"/></svg>
                             </div>
                             <p class="review-text">"Extremamente satisfeitos! Precisamos trocar a bateria do carro no domingo à tarde, serviço que foi realizado de forma rápida e com muita eficiência! Ótimo atendimento!"</p>
                         </article>
@@ -1456,22 +1429,22 @@
             </h2>
             <div class="why-grid">
                 <div class="why-card">
-                    <i class="fa-regular fa-clock" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M256 0a256 256 0 1 1 0 512A256 256 0 1 1 256 0zM232 120V256c0 8 4 15.5 10.7 20l96 64c11 7.4 25.9 4.4 33.3-6.7s4.4-25.9-6.7-33.3L280 243.2V120c0-13.3-10.7-24-24-24s-24 10.7-24 24z"/></svg>
                     <h3>24 horas de verdade</h3>
                     <p>Atendimento todos os dias, inclusive fins de semana e feriados.</p>
                 </div>
                 <div class="why-card">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C11.1 30.7 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.3-11.1 38.6-27.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
                     <h3>Contato direto</h3>
                     <p>Você fala com quem resolve, sem menus ou espera desnecessária.</p>
                 </div>
                 <div class="why-card">
-                    <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M256 0c4.6 0 9.2 1 13.4 2.9L457.7 82.8c22 9.3 38.4 31 38.3 57.2c-.5 99.2-41.3 280.7-213.7 363.2c-16.7 8-36.1 8-52.8 0C57.3 420.7 16.5 239.2 16 140c-.1-26.2 16.3-47.9 38.3-57.2L242.7 2.9C246.8 1 251.4 0 256 0zm0 66.8V444.8C394 378 431.1 218.4 432 141.4L256 66.8z"/></svg>
                     <h3>Cuidado e segurança</h3>
                     <p>Seu veículo tratado com responsabilidade da chamada à conclusão.</p>
                 </div>
                 <div class="why-card">
-                    <i class="fa-solid fa-user-group" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M96 128a128 128 0 1 1 256 0A128 128 0 1 1 96 128zM0 482.3C0 383.8 79.8 304 178.3 304h91.4C368.2 304 448 383.8 448 482.3c0 16.4-13.3 29.7-29.7 29.7H29.7C13.3 512 0 498.7 0 482.3zM609.3 512H471.4c5.4-9.4 8.6-20.3 8.6-32v-8c0-60.7-27.1-115.2-69.8-151.8c2.4-.1 4.7-.2 7.1-.2h61.4C567.8 320 640 392.2 640 481.3c0 17-13.8 30.7-30.7 30.7zM432 256c-31 0-59-12.6-79.3-32.9C372.4 196.5 384 163.6 384 128c0-26.8-6.6-52.1-18.3-74.3C384.3 40.1 407.2 32 432 32a128 128 0 1 1 0 256z"/></svg>
                     <h3>Equipe da região</h3>
                     <p>Conhecimento local para chegar até você com mais agilidade.</p>
                 </div>
@@ -1498,10 +1471,10 @@
 
             <div class="cta-actions" style="position:relative;z-index:1">
                 <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="btn-darker" data-cta-location="desconhecido">
-                    Chamar no WhatsApp <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                    Chamar no WhatsApp <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:.875rem;height:.875rem"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"/></svg>
                 </a>
                 <a href="tel:+5527999825891" class="cta-phone-link">
-                    <i class="fa-solid fa-phone" aria-hidden="true"></i>
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" style="width:1.25rem;height:1.25rem"><path d="M164.9 24.6c-7.7-18.6-28-28.5-47.4-23.2l-88 24C11.1 30.7 0 46 0 64C0 311.4 200.6 512 448 512c18 0 33.3-11.1 38.6-27.5l24-88c5.3-19.4-4.6-39.7-23.2-47.4l-96-40c-16.3-6.8-35.2-2.1-46.3 11.6L304.7 368C234.3 334.7 177.3 277.7 144 207.3L193.3 167c13.7-11.2 18.4-30 11.6-46.3l-40-96z"/></svg>
                     <div class="cta-phone-text">
                         <span class="phone-line1">Ou ligue agora</span>
                         <span class="phone-line2">(27) 99982-5891</span>
@@ -1542,7 +1515,7 @@
 
     <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/5527999825891?text=Ol%C3%A1!%20Preciso%20de%20atendimento%20da%20assist%C3%AAncia%2024h." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Chamar agora pelo WhatsApp" data-cta-location="desconhecido">
-        <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" fill="currentColor" style="width:1.5rem;height:1.5rem"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z"/></svg>
         <span>Chamar agora</span>
     </a>
 
@@ -1552,7 +1525,7 @@
 
     <!-- Carrossel de Guincho -->
     <script>
-        (function() {
+        window.addEventListener('load', function() {
             var carousel = document.getElementById('service-carousel');
             var dots = carousel.closest('.carousel-wrap').querySelectorAll('.carousel-dot');
             var total = 4;
@@ -1577,12 +1550,12 @@
                 d.addEventListener('click', function() { goTo(parseInt(d.dataset.index)); reset(); });
             });
             reset();
-        })();
+        });
     </script>
 
     <!-- Carrossel de Baterias -->
     <script>
-        (function() {
+        window.addEventListener('load', function() {
             var carousel = document.getElementById('battery-carousel');
             var dots = carousel.closest('.carousel-wrap').querySelectorAll('.carousel-dot');
             var total = 4;
@@ -1607,12 +1580,12 @@
                 d.addEventListener('click', function() { goTo(parseInt(d.dataset.index)); reset(); });
             });
             reset();
-        })();
+        });
     </script>
 
     <!-- Slider de Depoimentos -->
     <script>
-        (function() {
+        window.addEventListener('load', function() {
             var track = document.getElementById('testimonial-track');
             var prevBtn = document.getElementById('prev-review');
             var nextBtn = document.getElementById('next-review');
@@ -1644,7 +1617,7 @@
                 if (index > getMaxIndex()) index = getMaxIndex();
                 updateSlider();
             });
-        })();
+        });
     </script>
 
     <!-- ========================
